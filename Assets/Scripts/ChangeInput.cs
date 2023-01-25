@@ -11,14 +11,18 @@ public class ChangeInput : MonoBehaviour
     public Selectable firstInput;
     public Button submitButton;
 
-    // Start is called before the first frame update
+    /*
+        THIS SCRIPT IS USED IN THE LOGIN SCREEN
+        WHAT IT DOES IS ENABLES THE USE OF TAB TO GO DOWN IN THE LOGIN FIELDS/BUTTONS, AND SHIFT+TAB TO GO UP
+        ALSO ENABLES THE USE OF ENTER AS AN ALTERNATIVE TO CLICKING THE LOGIN BUTTON
+    */
+
     void Start()
     {
         system = EventSystem.current;
         firstInput.Select();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab) && Input.GetKey(KeyCode.LeftShift))

@@ -83,7 +83,7 @@ public class PlayFabManager : MonoBehaviour
 
     void OnSuccess(LoginResult result)
     {
-        Debug.Log("Successful login/account create!");
+        messageText.text = "Successful login/account create!";
     }
 
     void OnError(PlayFabError error)
