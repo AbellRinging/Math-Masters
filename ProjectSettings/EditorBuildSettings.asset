@@ -8,4 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/SamosTown.unity
+    guid: 78b062992a930ae46b879708f320bfe3
+  - enabled: 1
+    path: Assets/Scenes/Levels/LevelManager.unity
+    guid: 790bdda86201c60418cb9fc2a7a099f2
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level1.unity
+    guid: 907f4459067c6ba4598174a3173d7021
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level2.unity
+    guid: 3ed9e7d933d48cd46808414b3e701790
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level3.unity
+    guid: 9c438878d458d2f488d43018cb304648
   m_configObjects: {}
