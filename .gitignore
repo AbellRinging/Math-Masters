@@ -51,3 +51,5 @@ UserSettings/
 Assets/Scenes/SampleScene.unity
 Assets/Scenes/SampleScene.unity.meta
 UserSettings/Layouts/default-2021.dwlt
+Assets/PlayFabEditorExtensions/Editor/Resources/PlayFabUnitySdk.unitypackage.meta
+Assets/PlayFabEditorExtensions/Editor/Resources/PlayFabUnityEditorExtensions.unitypackage.meta
