@@ -14,8 +14,13 @@ public class LevelSelector : MonoBehaviour
 
     }
 
- public void OpenScene()
- {
-    SceneManager.LoadScene("Level" +level.ToString());
- }
+   void onTriggerEnter (Collider other)
+   {
+      SceneManager.LoadScene(2);
+   }
+
+   public void OpenScene()
+   {
+       SceneManager.LoadScene("Level" +level.ToString());
+   }
 }
