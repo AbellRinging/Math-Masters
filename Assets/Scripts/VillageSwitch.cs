@@ -5,13 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class VillageSwitch : MonoBehaviour
 {
-   void onTriggerEnter (Collider other)
+   void onTriggerStay (Collider other)
    {
-    print("Trigger Entered");
-    
-    if(other.tag == "Player")
+      if(other.CompareTag("Player"))
     {
-        print("Switch Scene to 2");
         SceneManager.LoadScene(2);
     }
    }
