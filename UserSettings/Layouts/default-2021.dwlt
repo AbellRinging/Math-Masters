@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Inspector
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 72
+  controlID: 64
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 30
+  controlID: 74
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -424,9 +424,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: b6a20000
-      m_LastClickedID: 41654
-      m_ExpandedIDs: a245ffff4ab0ffff4eb0ffffdab0ffffdeb0ffffe2b0ffffe6b0ffffeab0ffff08b1ffff5eb5fffff6d9ffff4eebffffc2f4ffff4cf6ffffa6f6ffff0cf9ffff7af9ffffd6f9ffff2cfbffff8e680000b8680000ca9a0000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 20fbffffe6740000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -545,9 +545,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ca940000
-    m_LastClickedID: 38090
-    m_ExpandedIDs: 00000000c0630000c2630000c4630000c86300009e640000ca94000000ca9a3b
+    m_SelectedIDs: cc7e0000
+    m_LastClickedID: 32460
+    m_ExpandedIDs: 00000000c27e0000c47e0000c67e0000c87e0000ca7e0000cc7e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -575,7 +575,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c0630000c2630000c4630000c6630000c8630000
+    m_ExpandedIDs: 00000000c27e0000c47e0000c67e0000c87e0000ca7e0000cc7e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -602,7 +602,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: b47400005c6e000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -970,9 +970,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.38940185, y: 16.959135, z: 22.04859}
+    m_Target: {x: -9.370217, y: 6.757719, z: 31.054617}
     speed: 2
-    m_Value: {x: 0.38940185, y: 16.959135, z: 22.04859}
+    m_Value: {x: -9.370217, y: 6.757719, z: 31.054617}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -995,7 +995,7 @@ MonoBehaviour:
       m_Fade:
         m_Target: 0
         speed: 2
-        m_Value: 1
+        m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
@@ -1011,7 +1011,7 @@ MonoBehaviour:
       m_Fade:
         m_Target: 0
         speed: 2
-        m_Value: 1
+        m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
@@ -1019,13 +1019,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.547
   m_Rotation:
-    m_Target: {x: 0.005312843, y: 0.9851803, z: -0.16860588, w: 0.031043451}
+    m_Target: {x: -0.005790223, y: 0.95471126, z: -0.29689673, w: -0.018619241}
     speed: 2
-    m_Value: {x: 0.00415442, y: 0.9877285, z: -0.15383, w: 0.026675154}
+    m_Value: {x: -0.0053448677, y: 0.9547375, z: -0.29690486, w: -0.01718714}
   m_Size:
-    m_Target: 25.588266
+    m_Target: 10.679823
     speed: 2
-    m_Value: 26.793997
+    m_Value: 11.183061
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1043,8 +1043,8 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: 0.037108127, y: 0.95526296, z: -0.25975472, w: 0.13646735}
-  m_LastSceneViewOrtho: 1
+  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+  m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
   m_SceneVisActive: 1
