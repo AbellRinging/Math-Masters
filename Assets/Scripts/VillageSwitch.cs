@@ -7,7 +7,13 @@ public class VillageSwitch : MonoBehaviour
 {
    void onTriggerEnter (Collider other)
    {
-      SceneManager.LoadScene(2);
+    print("Trigger Entered");
+    
+    if(other.tag == "Player")
+    {
+        print("Switch Scene to 2");
+        SceneManager.LoadScene(2);
+    }
    }
 
 }
