@@ -9,8 +9,7 @@ public class VillageSwitch : MonoBehaviour
    {
       if(other.CompareTag("Player"))
     {
-        print("collider");
-        SceneManager.LoadScene(2);
+      SceneManager.LoadScene(2);
     }
    }
 
