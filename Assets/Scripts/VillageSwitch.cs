@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class VillageSwitch : MonoBehaviour
 {
-   void onTriggerEnter (Collider other)
+   void OnTriggerEnter (Collider other)
    {
       if(other.CompareTag("Player"))
     {
