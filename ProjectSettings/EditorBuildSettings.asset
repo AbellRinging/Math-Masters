@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Login.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 5c7d43a7e0480f94fb0e5cd0abd7109a
+  - enabled: 1
     path: Assets/Scenes/SamosTown.unity
     guid: 78b062992a930ae46b879708f320bfe3
   - enabled: 1

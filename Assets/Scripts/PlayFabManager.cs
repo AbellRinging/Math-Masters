@@ -5,6 +5,7 @@ using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayFabManager : MonoBehaviour
 {
@@ -13,10 +14,14 @@ public class PlayFabManager : MonoBehaviour
     public TMP_InputField emailInput;
     public TMP_InputField passwordInput;
 
-    private void Start()
-    {
-        Login();
-    }
+    /*
+        That Login() method in Start() was to login with computer ID and not with email + password;
+    */
+
+    // private void Start()
+    // {
+    //     Login();
+    // } 
 
     public void RegisterButton()
     {
@@ -38,6 +43,9 @@ public class PlayFabManager : MonoBehaviour
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
         messageText.text = "Registered and logged in!";
+        StaticPlayerProfile.PlayerFabId = result.PlayFabId;
+        UpdateDisplayName(StaticPlayerProfile.PlayerFabId);
+        StartCoroutine(OnLoginSuccessSleep());
     }
 
     public void LoginButton()
@@ -53,7 +61,42 @@ public class PlayFabManager : MonoBehaviour
     void OnLoginSuccess(LoginResult result)
     {
         messageText.text = "Logged in!";
-        Debug.Log("Successful login/account create!");
+        StaticPlayerProfile.PlayerFabId = result.PlayFabId;
+
+        /*
+            THIS NEXT BIT HERE IS HOW TO CALL FOR PROFILE, DON'T FORGET HOW IT WORKS
+        */
+
+        PlayFabClientAPI.GetPlayerProfile( new GetPlayerProfileRequest(){
+            PlayFabId = StaticPlayerProfile.PlayerFabId,
+            ProfileConstraints = new PlayerProfileViewConstraints(){
+                ShowDisplayName = true
+            }
+        }, result => OnGetPlayerProfileSuccess(result), OnError);
+
+        /*
+            ###### 
+        */
+
+        StartCoroutine(OnLoginSuccessSleep());
+    }
+
+    IEnumerator OnLoginSuccessSleep(){
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    void OnGetPlayerProfileSuccess(GetPlayerProfileResult result){
+        StaticPlayerProfile.PlayerName = result.PlayerProfile.DisplayName;
+    }
+
+
+    void UpdateDisplayName(string PlayFabId) {
+        PlayFabClientAPI.UpdateUserTitleDisplayName( new UpdateUserTitleDisplayNameRequest {
+            DisplayName = PlayFabId
+        }, result => {
+            Debug.Log("The player's display name is now: " + result.DisplayName);
+        }, OnError);
     }
 
     public void ResetPasswordButton()
@@ -71,20 +114,20 @@ public class PlayFabManager : MonoBehaviour
         messageText.text = "Changed reset mail sent";
     }
 
-    void Login()
-    {
-        var request = new LoginWithCustomIDRequest
-        {
-            CustomId = SystemInfo.deviceUniqueIdentifier,
-            CreateAccount = true
-        };
-        PlayFabClientAPI.LoginWithCustomID(request, OnSuccess, OnError);
-    }
+    // void Login()
+    // {
+    //     var request = new LoginWithCustomIDRequest
+    //     {
+    //         CustomId = SystemInfo.deviceUniqueIdentifier,
+    //         CreateAccount = true
+    //     };
+    //     PlayFabClientAPI.LoginWithCustomID(request, OnSuccess, OnError);
+    // }
 
-    void OnSuccess(LoginResult result)
-    {
-        messageText.text = "Successful login/account create!";
-    }
+    // void OnSuccess(LoginResult result)
+    // {
+    //     messageText.text = "Successful login/account create!";
+    // }
 
     void OnError(PlayFabError error)
     {
