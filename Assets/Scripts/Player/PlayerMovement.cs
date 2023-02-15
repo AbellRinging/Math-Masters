@@ -17,6 +17,7 @@ public class PlayerMovement : Parent_PlayerScript
         private RaycastHit ClickedLocation;
         private bool isMovingToClickedLocation = false;
         private string groundTag = "Ground";
+        public GameObject GO_DisplayClickedLocation;
     #endregion
 
     protected override void Custom_Start()
@@ -68,6 +69,7 @@ public class PlayerMovement : Parent_PlayerScript
                     NavigationAgent.SetDestination(ClickedLocation.point);
                     isMovingToClickedLocation = true;
 
+                    Instantiate(GO_DisplayClickedLocation, ClickedLocation.point, Quaternion.identity);
                     MainScript.AnimationScript.ToggleAnimation("isWalkingFWD", true);
                 }
                 // Clicked on [SOMETHING ELSE] (Call MainScript??)
