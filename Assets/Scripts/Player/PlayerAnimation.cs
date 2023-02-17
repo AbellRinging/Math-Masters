@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerAnimation : Parent_PlayerScript
 {
 
-    Animator animator;
-    int isWalkingHash;
+    private Animator animator;
 
     protected override void Custom_Start()
     {
