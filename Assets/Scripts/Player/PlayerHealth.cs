@@ -1,31 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : Parent_PlayerScript
 {
+    public int StartingMaxHealth;
+    private Slider slider;
 
-    public int maxHealth = 100;
-    public int currentHealth;
-
-    public HealthBar healthBar;
-    
     protected override void Custom_Start()
     {
+        slider = MainScript.EssentialCanvas.transform.GetChild(0).GetComponent<Slider>();
 
+        SetMaxHealth(StartingMaxHealth);
+        SetHealth((int)slider.maxValue);
     }
 
-    // Start is called before the first frame update
-    // void Start()
-    // {
-    //     currentHealth = maxHealth;
-    //     healthBar.SetMaxHealth(maxHealth);
-    // }
-
-    void TakeDamage(int damage)
+    public void SetMaxHealth(int maxHealth)
     {
-        currentHealth -= damage;
+        slider.maxValue = maxHealth;
+        slider.minValue = 0;
+    }
 
-        healthBar.SetHealth(currentHealth);
+    public void SetHealth(int Health)
+    {
+        slider.value = Health;
     }
 }

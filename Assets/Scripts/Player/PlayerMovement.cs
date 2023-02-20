@@ -87,5 +87,9 @@ public class PlayerMovement : Parent_PlayerScript
             MainScript.AnimationScript.ToggleAnimation("isWalkingFWD", false);
         }
     }
+
+    public void ForcedMove(Vector3 WhereToWalkTo){
+        
+    }
 }
 
