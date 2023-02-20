@@ -2283,7 +2283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7622fa3dcf25fc04ea3dee32c203ea64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraAngle: {x: -22.9, y: 10, z: 46.44}
+  CameraAngle: {x: 0, y: 10, z: 10}
   zoomSpeed: 1
   orthographicSizeMin: 7
   orthographicSizeMax: 15
