@@ -8,6 +8,7 @@ public class GO_ClickedLocation : MonoBehaviour
     {
         StartCoroutine(Ephemerate());
     }
+    
     IEnumerator Ephemerate(){
         yield return new WaitForSeconds(0.3f);
         Destroy(transform.gameObject);
