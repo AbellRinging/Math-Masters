@@ -12,6 +12,7 @@ public class PlayerMainScript : MonoBehaviour
         public PlayerAnimation AnimationScript;
         public PlayerCamera CameraScript;
         public PlayerCombat CombatScript;
+        public PlayerMoney MoneyScript;
     #endregion
     public Canvas EssentialCanvas;
     public Canvas CombatCanvas;
@@ -34,12 +35,14 @@ public class PlayerMainScript : MonoBehaviour
             AnimationScript = GetComponent<PlayerAnimation>();
             CameraScript = GetComponent<PlayerCamera>();
             CombatScript = GetComponent<PlayerCombat>();
+            MoneyScript = GetComponent<PlayerMoney>();
 
             MovementScript.Run_At_Start();
             HealthScript.Run_At_Start();
             AnimationScript.Run_At_Start();
             CameraScript.Run_At_Start();
             if(int_CurrentScene != 2) CombatScript.Run_At_Start();
+            MoneyScript.Run_At_Start();
         #endregion
     }
 
@@ -54,4 +57,16 @@ public class PlayerMainScript : MonoBehaviour
         // ## Update Camera Position relative to the player, and allow zoom in and out
         CameraScript.UpdateCamera();
     }
+
+    #region Money (Incomplete)
+        public int DB_GetMoney()
+        {
+            return 1;
+        }
+
+        public void DB_SetMoney()
+        {
+
+        }
+    #endregion
 }
