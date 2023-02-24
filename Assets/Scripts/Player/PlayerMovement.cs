@@ -72,7 +72,7 @@ public class PlayerMovement : Parent_PlayerScript
                     Instantiate(GO_DisplayClickedLocation, ClickedLocation.point, Quaternion.identity);
                     MainScript.AnimationScript.ToggleAnimation("isWalkingFWD", true);
                 }
-                // Clicked on [SOMETHING ELSE] (Call MainScript??)
+                // Clicked on [SOMETHING ELSE] (Call MainScript??) TO BE DEFINED
             }
         }
         // If there is no more player Input, let the character move to the Clicked Location. Checks if the character is still moving
@@ -88,8 +88,29 @@ public class PlayerMovement : Parent_PlayerScript
         }
     }
 
-    public void ForcedMove(Vector3 WhereToWalkTo){
-        
+    /// <summary>
+    ///     Used during Combat, uses NavigationAgent to move the player. Player can not influence this movement
+    /// </summary>
+    public void ForcedMove()
+    {
+        if (isMovingToClickedLocation && !NavigationAgent.hasPath)
+        {
+            isMovingToClickedLocation = false;
+        }
+        // # Stop moving and allow cards to appear on screen
+        else if (!isMovingToClickedLocation)
+        {
+            MainScript.CombatCanvas.SetActive(true);
+            MainScript.AnimationScript.ToggleAnimation("isWalkingFWD", false);
+        }
+    }
+
+    public void ForceMoveToLocation(Vector3 WhereToGo)
+    {
+        NavigationAgent.SetDestination(WhereToGo);
+        isMovingToClickedLocation = true;
+
+        MainScript.AnimationScript.ToggleAnimation("isWalkingFWD", true);
     }
 }
 

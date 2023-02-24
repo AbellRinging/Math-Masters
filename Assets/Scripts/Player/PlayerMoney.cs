@@ -6,18 +6,22 @@ using TMPro;
 public class PlayerMoney : Parent_PlayerScript
 {
     private TextMeshProUGUI Text_MoneyHUD;
-
-    // Variable that stores money
-    public int Money {set; get;}
+    private int Money;
     protected override void Custom_Start()
     {
         Text_MoneyHUD = MainScript.EssentialCanvas.transform.Find("Coin").GetComponentInChildren<TextMeshProUGUI>();
         Money = MainScript.DB_GetMoney();
-        UpdateMoneyHUD(Money);
+        Set_Money(1); // ***FETCH AMOUNT OF MONEY FROM DATABASE***
     }
 
-    public void UpdateMoneyHUD(int amount)
+    public void Set_Money (int amount)
     {
+        Money += amount;
         Text_MoneyHUD.text = "" + Money;
+    }
+
+    public int Get_Money ()
+    {
+        return Money;
     }
 }
