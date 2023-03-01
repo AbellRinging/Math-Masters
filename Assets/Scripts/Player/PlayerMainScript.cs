@@ -12,6 +12,7 @@ public class PlayerMainScript : MonoBehaviour
         [HideInInspector] public PlayerCamera CameraScript;
         [HideInInspector] public PlayerCombat CombatScript;
         [HideInInspector] public PlayerMoney MoneyScript;
+        [HideInInspector] public PlayerDeck DeckScript;
     #endregion
     
     [HideInInspector] public GameObject EssentialCanvas;
@@ -38,6 +39,7 @@ public class PlayerMainScript : MonoBehaviour
             CameraScript = GetComponent<PlayerCamera>();
             CombatScript = GetComponent<PlayerCombat>();
             MoneyScript = GetComponent<PlayerMoney>();
+            DeckScript = GetComponent<PlayerDeck>();
 
             MovementScript.Run_At_Start();
             HealthScript.Run_At_Start();
@@ -45,6 +47,7 @@ public class PlayerMainScript : MonoBehaviour
             CameraScript.Run_At_Start();
             if(int_CurrentScene != 2) CombatScript.Run_At_Start();
             MoneyScript.Run_At_Start();
+            if(int_CurrentScene != 2) DeckScript.Run_At_Start();
         #endregion
     }
 

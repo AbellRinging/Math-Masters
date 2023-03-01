@@ -6,80 +6,51 @@ using UnityEngine.UI;
 
 public class BattleCard : MonoBehaviour
 {
-    public class Card
-    {
-        public string Name;
-        public string Sign;
-        public Sprite Image;
-        public string Type;
-        public int Damage;          // For Attacks only
-        public string SpellType;    // For Spells only
+    /*
+        This script is attached to the cards
+    */
 
-        // For creating Attack Cards
-        public Card(string cardName, string sign, Sprite attackImage, int attackDamage)
-        {
-            Name = cardName;
-            Sign = sign;
-            Image = attackImage;
-            Type = "Ataque";
-            Damage = attackDamage;
-        }
-
-        // For creating Spell Cards
-        public Card(string cardName, Sprite spellImage, string typeOfSpell)
-        {
-            Name = cardName;
-            Sign = " ";
-            Image = spellImage;
-            Type = "Feitiço";
-            SpellType = typeOfSpell;
-        }
-    }
-
-    public Card SavedCard;
-
-    #region GameObject Card Private Properties
-        private TextMeshProUGUI Text_CardName;
-        private TextMeshProUGUI Text_Sign;
-        private Image           Image_Card;
-        private TextMeshProUGUI Text_Type; // Ataque ou Feitiço
-        private TextMeshProUGUI Text_Description;
+    #region GameObject Card Visual Components
+        public TextMeshProUGUI Text_CardName;
+        public TextMeshProUGUI Text_Sign;
+        public Image           Image_Card;
+        public TextMeshProUGUI Text_Type; // Ataque ou Feitiço
+        public TextMeshProUGUI Text_Description;
     #endregion
 
-    public void CreateCard(Card cardInfo)
+    // ========== Is one or the other, not both
+        private PlayerDeck.AttackCard AttackInfo;
+        private PlayerDeck.SpellCard SpellInfo;
+    // ==========
+
+    public void CreateAttackCard(PlayerDeck.AttackCard card, Sprite image)
     {
-        SavedCard = cardInfo;
-        
-        if (SavedCard.Type == "Ataque")
-        {
-            CreateAttackCard();
-        }
-        else if (SavedCard.Type == "Feitiço")
-        {
-            CreateSpellCard();
-        }
-        else Debug.LogError("Type of Card typed incorrectly. Received: " + SavedCard.Type);
-    }
-    public void CreateAttackCard()
-    {
-        Text_CardName.text = SavedCard.Name;
-        Text_Sign.text = SavedCard.Sign;
-        Image_Card.sprite = SavedCard.Image;
+        // Save the info
+        AttackInfo = card;
+
+        //Change the visuals of the GameObject
+        Text_CardName.text = card.Name;
+        Text_Sign.text = card.Sign;
+        Image_Card.sprite = image;
         
         Text_Type.text = "Ataque";
 
-        Text_Description.text = "Dá " + SavedCard.Damage + " de dano ao inimigo";
+        Text_Description.text = "Dá " + card.ImageName + " de dano ao inimigo";
     }
 
-    public void CreateSpellCard()
+    public void CreateSpellCard(PlayerDeck.SpellCard card, Sprite image)
     {
-        Text_CardName.text = SavedCard.Name;
+        // Save the info
+        SpellInfo = card;
+
+        //Change the visuals of the GameObject
+        Text_CardName.text = card.Name;
         Text_Sign.text = " ";
-        Image_Card.sprite = SavedCard.Image;
+        Image_Card.sprite = image;
 
         Text_Type.text = "Feitiço";
 
-        switch(SavedCard.SpellType){
+        switch(card.SpellType){
             case("Suspend"):
                 Text_Description.text = "Neste turno o inimigo fica impossibilitado de atacar";
                 break;
@@ -93,7 +64,7 @@ public class BattleCard : MonoBehaviour
                 Text_Description.text = "Durante um turno, ataca duas vezes";
                 break;
             default:
-                Debug.LogError("Type of Spell typed incorrectly. Received: " + SavedCard.SpellType);
+                Debug.LogError("Type of Spell typed incorrectly. Received: " + card.SpellType);
                 break;
         }
     }

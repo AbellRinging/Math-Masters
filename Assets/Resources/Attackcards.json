@@ -1,15 +1,13 @@
 [
 	{
-        "name": "",
-        "sign": "",
-        "image": "",
-        "damage": 0
+        "Name": "Test1",
+        "Sign": "+",
+        "ImageName": "1"
     },
-
-	{
-        "name": "",
-        "sign": "",
-        "image": "",
-        "damage": 0
+    
+    {
+        "Name": " ",
+        "Sign": " ",
+        "ImageName": "2"
     }
 ]

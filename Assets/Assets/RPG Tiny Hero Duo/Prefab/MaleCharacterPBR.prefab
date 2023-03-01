@@ -2120,6 +2120,7 @@ GameObject:
   - component: {fileID: 265341991046214006}
   - component: {fileID: 1852930541}
   - component: {fileID: 350909195}
+  - component: {fileID: 6667020932940612796}
   m_Layer: 0
   m_Name: MaleCharacterPBR
   m_TagString: Player
@@ -2233,6 +2234,8 @@ MonoBehaviour:
   AnimationScript: {fileID: 0}
   CameraScript: {fileID: 0}
   CombatScript: {fileID: 0}
+  MoneyScript: {fileID: 0}
+  DeckScript: {fileID: 0}
   EssentialCanvas: {fileID: 0}
   CombatCanvas: {fileID: 0}
 --- !u!114 &436350410
@@ -2314,6 +2317,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4528e2e34f5ef2a4aa730eed6e12978b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Float_StoppingDistance: 7
+  ListOfEnemies: []
+--- !u!114 &6667020932940612796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8189980434977739222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa347c216bbde7446ab66da888908bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prefab_Card: {fileID: 2602644919496097891, guid: c2e33b1d8731ada45a310fdd6bd2a2fc, type: 3}
 --- !u!1 &8206070634150816031
 GameObject:
   m_ObjectHideFlags: 0

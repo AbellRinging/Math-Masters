@@ -960,7 +960,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbab1160003944d45bd62694307b8df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardName: 
+  Text_CardName: {fileID: 2602644919312129950}
+  Text_Sign: {fileID: 2602644919867139980}
+  Image_Card: {fileID: 2602644919282881417}
+  Text_Type: {fileID: 2602644919082125065}
+  Text_Description: {fileID: 2602644919228859796}
 --- !u!1 &2602644919867139970
 GameObject:
   m_ObjectHideFlags: 0
