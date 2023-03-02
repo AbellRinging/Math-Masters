@@ -18996,6 +18996,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 998389375878238249, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 998389375878238249, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 998389375878238249, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 998389375878238250, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
@@ -19196,6 +19208,18 @@ PrefabInstance:
     - target: {fileID: 3816659941227178077, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
       propertyPath: m_Name
       value: Combat Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816659941227178079, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816659941227178079, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816659941227178079, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
