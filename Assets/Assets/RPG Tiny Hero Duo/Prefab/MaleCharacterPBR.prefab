@@ -2331,11 +2331,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa347c216bbde7446ab66da888908bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Array_AttackCards: []
-  Array_SpellCards: []
   Prefab_Card: {fileID: 2602644919496097891, guid: c2e33b1d8731ada45a310fdd6bd2a2fc, type: 3}
+  Int_HandSize: 3
   Toggle: 0
-  GO_DeckMat: {fileID: 0}
+  RT_DeckMat: {fileID: 0}
+  cs: {fileID: 0}
+  CardDimensions: {x: 220, y: 340, z: 10}
 --- !u!1 &8206070634150816031
 GameObject:
   m_ObjectHideFlags: 0
