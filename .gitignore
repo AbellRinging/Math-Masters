@@ -53,3 +53,8 @@ Assets/Scenes/SampleScene.unity.meta
 Assets/PlayFabEditorExtensions/Editor/Resources/PlayFabUnitySdk.unitypackage.meta
 Assets/PlayFabEditorExtensions/Editor/Resources/PlayFabUnityEditorExtensions.unitypackage.meta
 UserSettings/Layouts/default-2021.dwlt
+
+# Ignore Discord Rich Presence
+ERP/
+.erp
+Assets/ERP.meta
