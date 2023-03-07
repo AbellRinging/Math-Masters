@@ -11,5 +11,26 @@
         "Name": " ",
         "Sign": " ",
         "ImageName": "2"
+    },
+
+    {
+        "Type": "AttackCard",
+        "Name": " ",
+        "Sign": "x",
+        "ImageName": "3"
+    },
+
+    {    
+        "Type": "AttackCard",
+        "Name": " ",
+        "Sign": "x",
+        "ImageName": "4"
+    },
+
+    {
+        "Type": "AttackCard",
+        "Name": " ",
+        "Sign": "x",
+        "ImageName": "5"
     }
 ]
