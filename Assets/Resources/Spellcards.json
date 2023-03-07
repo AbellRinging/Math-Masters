@@ -1,11 +1,13 @@
 [
 	{
+        "Type": "SpellCard",
         "Name": " ",
         "ImageName": "1",
         "SpellType": " "
     },
 
     {
+        "Type": "SpellCard",
         "Name": " ",
         "ImageName": "2",
         "SpellType": " "

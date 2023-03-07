@@ -1,11 +1,13 @@
 [
 	{
+        "Type": "AttackCard",
         "Name": "Test1",
         "Sign": "+",
         "ImageName": "1"
     },
     
     {
+        "Type": "AttackCard",
         "Name": " ",
         "Sign": " ",
         "ImageName": "2"

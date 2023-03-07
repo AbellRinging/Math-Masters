@@ -6195,6 +6195,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5288999041518571932, guid: cc39fa903ec8a0b45a55255d524b2f76, type: 3}
   m_PrefabInstance: {fileID: 685448683}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &686551353 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3816659941227178077, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
+  m_PrefabInstance: {fileID: 3816659941652851373}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &686551355 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3816659941227178079, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
+  m_PrefabInstance: {fileID: 3816659941652851373}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686551353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &694071488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8023,6 +8039,16 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5288999041518571932, guid: cc39fa903ec8a0b45a55255d524b2f76, type: 3}
   m_PrefabInstance: {fileID: 915785069}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &921825077 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1470680389, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
+  m_PrefabInstance: {fileID: 3816659941652851373}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &921825078 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1470680390, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
+  m_PrefabInstance: {fileID: 3816659941652851373}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &930098425
 PrefabInstance:
@@ -18723,6 +18749,46 @@ PrefabInstance:
     - target: {fileID: 1852930541, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       propertyPath: CameraAngle.z
       value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667020932940612796, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: cs
+      value: 
+      objectReference: {fileID: 686551355}
+    - target: {fileID: 6667020932940612796, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: Toggle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667020932940612796, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: GO_Draw
+      value: 
+      objectReference: {fileID: 686551353}
+    - target: {fileID: 6667020932940612796, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: GO_DeckMat
+      value: 
+      objectReference: {fileID: 921825077}
+    - target: {fileID: 6667020932940612796, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: RT_DeckMat
+      value: 
+      objectReference: {fileID: 921825078}
+    - target: {fileID: 6667020932940612796, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: Int_HandSize
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667020932940612796, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: GO_CombatCanvas
+      value: 
+      objectReference: {fileID: 686551353}
+    - target: {fileID: 6667020932940612796, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: CardDimensions.x
+      value: 220
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667020932940612796, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: CardDimensions.y
+      value: 340
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667020932940612796, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: CardDimensions.z
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8189980434977739222, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       propertyPath: m_Name

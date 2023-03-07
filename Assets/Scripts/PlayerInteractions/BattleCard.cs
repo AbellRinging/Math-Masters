@@ -10,6 +10,28 @@ public class BattleCard : MonoBehaviour
         This script is attached to the cards
     */
 
+    #region Card Information Classes for the code
+        public class BaseCard {/* No purpose other than unifying the two types for the Hand array in PlayerDeck script*/}
+
+        [System.Serializable] public class AttackCard : BaseCard
+        {
+            public string Type = "AttackCard";
+
+            public string Name;
+            public string Sign;
+            public string ImageName;    // Also stores how much damage is dealt since it is a number
+        }
+
+        [System.Serializable] public class SpellCard : BaseCard
+        {
+            public string Type = "SpellCard";
+
+            public string Name;
+            public string ImageName;
+            public string SpellType;
+        }
+    #endregion
+
     #region GameObject Card Visual Components
         public TextMeshProUGUI Text_CardName;
         public TextMeshProUGUI Text_Sign;
@@ -19,11 +41,11 @@ public class BattleCard : MonoBehaviour
     #endregion
 
     // ========== Is one or the other, not both
-        private PlayerDeck.AttackCard AttackInfo;
-        private PlayerDeck.SpellCard SpellInfo;
+        private AttackCard AttackInfo;
+        private SpellCard SpellInfo;
     // ==========
 
-    public void CreateAttackCard(PlayerDeck.AttackCard card, Sprite image)
+    public void CreateAttackCard(AttackCard card, Sprite image)
     {
         // Save the info
         AttackInfo = card;
@@ -38,7 +60,7 @@ public class BattleCard : MonoBehaviour
         Text_Description.text = "Dá " + card.ImageName + " de dano ao inimigo";
     }
 
-    public void CreateSpellCard(PlayerDeck.SpellCard card, Sprite image)
+    public void CreateSpellCard(SpellCard card, Sprite image)
     {
         // Save the info
         SpellInfo = card;
