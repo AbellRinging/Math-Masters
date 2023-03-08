@@ -62,8 +62,8 @@ public class PlayerMainScript : MonoBehaviour
             // ## AI movement to approach enemies
             MovementScript.ForcedMove();
 
-            // ## Combat Interactions
-            CombatScript.Combat_Update();
+            // // ## Combat Interactions
+            // CombatScript.Combat_Update();
         } 
 
         // ## Update Camera Position relative to the player, and allow zoom in and out
