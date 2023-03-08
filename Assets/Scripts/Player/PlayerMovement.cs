@@ -97,10 +97,10 @@ public class PlayerMovement : Parent_PlayerScript
         {
             isMovingToClickedLocation = false;
         }
-        // # Stop moving and allow cards to appear on screen
-        else if (!isMovingToClickedLocation)
+        // # Stop moving and allow cards to appear on screen (by starting the fight)
+        else if (!isMovingToClickedLocation && !MainScript.CombatScript.Bool_BattleIsHappening)
         {
-            MainScript.CombatCanvas.SetActive(true);
+            MainScript.CombatScript.BeginFight();
             MainScript.AnimationScript.ToggleAnimation("isWalkingFWD", false);
         }
     }

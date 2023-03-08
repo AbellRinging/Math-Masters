@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
 using UnityEngine.UI;
+using System.Linq;
 
 public class PlayerDeck : Parent_PlayerScript
 {
@@ -29,21 +30,21 @@ public class PlayerDeck : Parent_PlayerScript
         /* ==== */
     #endregion
 
-    [HideInInspector] public BattleCard.BaseCard[] Array_Hand;
+    [HideInInspector] public GameObject[] Array_Hand;
     [Tooltip ("How many cards to appear in the hand")]
         public int Int_HandSize = 5;
+    [Tooltip("Defines the probability a spell card is drawn. Range -> 1 to 0")]
+        public float PercentageToDrawSpell = 0.05f;
 
     protected override void Custom_Start()
     {
-        Array_Hand = new BattleCard.BaseCard[Int_HandSize];
+        Array_Hand = new GameObject[Int_HandSize];
 
         Get_AllCardsFromJSONs();
-
-        Generate_NewHand(1);
     }
     
     /// <summary>
-    ///     Reads the JSONs and creates two types of dictionaries: one type containing a name of card -> said card, and the second type is name of card -> sprite of said card
+    ///     PRIVATE: Reads the JSONs and creates two types of dictionaries: one type containing a name of card -> said card, and the second type is name of card -> sprite of said card
     /// </summary>
     private void Get_AllCardsFromJSONs()
     {
@@ -79,12 +80,49 @@ public class PlayerDeck : Parent_PlayerScript
             Dic_SpellCard.Add(card.ImageName, card);
         }
 
-        Debug.Log("Number of attack cards initialized: " + Dic_AttackCard.Count + "\n    Number of spell cards initialized: " + Dic_SpellCard.Count);
+        /* DEV */ Debug.Log("Number of attack cards initialized: " + Dic_AttackCard.Count + "\n    Number of spell cards initialized: " + Dic_SpellCard.Count);
     }
-
     
     /// <summary>
-    ///     Returns an array of coordinates where to instantiate cards
+    ///     PUBLIC: Generates a new hand of cards, one of which is the answer to the Question. IN CASE OF IMPLEMENTING PROCEDURALY GENERATED LEVELS, MODIFY THIS METHOD??
+    /// </summary>
+    public void Generate_NewHand(int answerToQuestion)
+    {
+        Vector3[] cardCoordinates = Generate_CardCoordinates();
+        bool[] BoolArray_RNGAssistant = Enumerable.Repeat(true, cardCoordinates.GetLength(0)).ToArray();
+
+        int randomInt = Random.Range(0, BoolArray_RNGAssistant.GetLength(0));
+        
+        Array_Hand[randomInt] = Generate_CardPrefab(cardCoordinates[randomInt], Dic_AttackCard[answerToQuestion.ToString()], Dic_AttackCardSprites[answerToQuestion.ToString()]);
+        BoolArray_RNGAssistant[randomInt] = false;
+        /* DEV */ //Debug.Log("Answer " + answerToQuestion + " was placed in the " + (randomInt + 1) + " index");
+
+        bool SpellCardDrawn = false;
+        for(int i = 0; i < Int_HandSize; ++i)
+        {
+            if(BoolArray_RNGAssistant[i])
+            {
+                float randomfloat = Random.value;
+
+                // Decide if a spell should be created or not. Only 1 such card can be created per turn
+                if(!SpellCardDrawn && randomfloat <= PercentageToDrawSpell)
+                {
+                    randomInt = Random.Range(0, Array_SpellCards.GetLength(0));
+                    Array_Hand[i] = Generate_CardPrefab(cardCoordinates[i], Array_SpellCards[randomInt], Dic_SpellCardSprites[Array_SpellCards[randomInt].ImageName]);
+                    SpellCardDrawn = !SpellCardDrawn;
+                }    
+                else
+                {
+                    randomInt = Random.Range(0, Array_AttackCards.GetLength(0));
+                    Array_Hand[i] = Generate_CardPrefab(cardCoordinates[i], Array_AttackCards[randomInt], Dic_AttackCardSprites[Array_AttackCards[randomInt].ImageName]);
+                }                                        
+
+            }
+        }
+    }
+
+    /// <summary>
+    ///     PRIVATE: Returns an array of coordinates where to instantiate cards
     /// </summary>
     private Vector3[] Generate_CardCoordinates()
     {
@@ -101,24 +139,15 @@ public class PlayerDeck : Parent_PlayerScript
         return cardCoordinates;
     }
 
-    /// <summary>
-    ///     Generates a new hand of cards, one of which is the answer to the Question. IN CASE OF IMPLEMENTING PROCEDURALY GENERATED LEVELS, MODIFY THIS METHOD??
-    /// </summary>
-    public void Generate_NewHand(int answerToQuestion)
+    private GameObject Generate_CardPrefab(Vector3 WhereToPut, BattleCard.BaseCard card, Sprite image)
     {
-        Vector3[] cardCoordinates = Generate_CardCoordinates();
+        GameObject newcard = Instantiate(Prefab_Card, MainScript.CombatCanvas.transform);
+        newcard.GetComponent<BattleCard>().CreateCard(card, image);
+        newcard.GetComponent<BattleCard>().MainScript = MainScript;
+        newcard.transform.position = WhereToPut;
 
-        GameObject newcard;
-        for(int i = 0; i < Int_HandSize; ++i)
-        {
-            // INCOMPLETE, NEEDS RNG TO PICK CARDS AND DISTRIBUTE THEM RANDOMLY
-            newcard = Instantiate(Prefab_Card, MainScript.CombatCanvas.transform);
-            newcard.GetComponent<BattleCard>().CreateAttackCard(Dic_AttackCard[answerToQuestion.ToString()], Dic_AttackCardSprites[answerToQuestion.ToString()]);
-            newcard.transform.position = cardCoordinates[i];
-        }
+        return newcard;
     }
-
-
 
 
 

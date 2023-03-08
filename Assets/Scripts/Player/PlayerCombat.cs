@@ -8,13 +8,14 @@ public class PlayerCombat : Parent_PlayerScript
     [Tooltip ("Player will stop further away from the enemy")]
     public float Float_StoppingDistance;    
     [HideInInspector] public List<Enemy> ListOfEnemies;
+    [HideInInspector] public bool Bool_BattleIsHappening = false;
 
     protected override void Custom_Start()
     {
         ListOfEnemies = new List<Enemy>();
         foreach (Enemy enemy in GameObject.Find("Enemies").GetComponentsInChildren<Enemy>())
         {
-            Debug.Log(enemy.gameObject.name);
+            /* DEV */ //Debug.Log(enemy.gameObject.name);
             ListOfEnemies.Add(enemy);
             enemy.InitializeEnemy(MainScript);
         }
@@ -23,19 +24,57 @@ public class PlayerCombat : Parent_PlayerScript
     }
 
     /// <summary>
-    ///     Updates every second, assuming there is battle ***VERY INCOMPLETE*** Missing card interactions here
+    ///     Where the player interacts with the cards and where the turns pass. Updates every second, assuming there is battle.
     /// </summary>
-    public void Combat_Update()
+    // public void Combat_Update()
+    // {
+    //     /*
+    //         Implement Turns here (make use of NewTurn() )
+    //     */
+    //     if (Input.GetKeyDown(KeyCode.E))
+    //     {
+    //         ListOfEnemies[0].TakeDamage(1);
+    //     }
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void BeginFight()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            ListOfEnemies[0].TakeDamage(1);
-        }
+        MainScript.CombatCanvas.SetActive(true);
+        Bool_BattleIsHappening = true;
+        NewTurn();
+    }
+
+    public void NewTurn()
+    {
+        /*
+            MISSING HERE PICKING THE QUESTION AND USING THE ANSWER FOR Generate_NewHand METHOD
+        */
+
+        MainScript.DeckScript.Generate_NewHand(1);
     }
 
 
     /// <summary>
-    ///     Called by a dying enemy INCOMPLETE
+    ///     Called by a dying enemy INCOMPLETE (EXP GAIN)
     /// </summary>
     public void NextEnemyFight()
     {
@@ -43,6 +82,7 @@ public class PlayerCombat : Parent_PlayerScript
 
         if (ListOfEnemies.Count > 0)
         {
+            MainScript.CombatScript.Bool_BattleIsHappening = false;
             MainScript.CombatCanvas.SetActive(false);
             ListOfEnemies[0].PrepareForCombat();
             MainScript.MovementScript.ForceMoveToLocation(new Vector3(ListOfEnemies[0].transform.position.x, transform.position.y, ListOfEnemies[0].transform.position.z + Float_StoppingDistance));

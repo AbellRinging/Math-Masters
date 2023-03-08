@@ -2,35 +2,21 @@
 	{
         "Type": "AttackCard",
         "Name": "Test1",
-        "Sign": "+",
+        "Sign": "x",
         "ImageName": "1"
     },
     
     {
         "Type": "AttackCard",
-        "Name": " ",
-        "Sign": " ",
+        "Name": "Test2",
+        "Sign": "x",
         "ImageName": "2"
     },
 
     {
         "Type": "AttackCard",
-        "Name": " ",
+        "Name": "Test3",
         "Sign": "x",
         "ImageName": "3"
-    },
-
-    {    
-        "Type": "AttackCard",
-        "Name": " ",
-        "Sign": "x",
-        "ImageName": "4"
-    },
-
-    {
-        "Type": "AttackCard",
-        "Name": " ",
-        "Sign": "x",
-        "ImageName": "5"
     }
 ]

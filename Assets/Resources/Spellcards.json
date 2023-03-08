@@ -1,15 +1,15 @@
 [
 	{
         "Type": "SpellCard",
-        "Name": " ",
+        "Name": "Suspend",
         "ImageName": "1",
-        "SpellType": " "
+        "SpellType": "Suspend"
     },
 
     {
         "Type": "SpellCard",
-        "Name": " ",
+        "Name": "ExtraDMG",
         "ImageName": "2",
-        "SpellType": " "
+        "SpellType": "ExtraDMG"
     }
 ]

@@ -11,24 +11,31 @@ public class BattleCard : MonoBehaviour
     */
 
     #region Card Information Classes for the code
-        public class BaseCard {/* No purpose other than unifying the two types for the Hand array in PlayerDeck script*/}
+        public class BaseCard 
+        { 
+            public string Type; 
+            public string Name;
+            public string ImageName;    // Also stores how much damage is dealt since it is a number, for Attack Cards
+        }
 
         [System.Serializable] public class AttackCard : BaseCard
         {
-            public string Type = "AttackCard";
-
-            public string Name;
             public string Sign;
-            public string ImageName;    // Also stores how much damage is dealt since it is a number
+
+            public AttackCard()
+            {
+                Type = "AttackCard";
+            }
         }
 
         [System.Serializable] public class SpellCard : BaseCard
         {
-            public string Type = "SpellCard";
-
-            public string Name;
-            public string ImageName;
             public string SpellType;
+
+            public SpellCard()
+            {
+                Type = "SpellCard";
+            }
         }
     #endregion
 
@@ -45,22 +52,57 @@ public class BattleCard : MonoBehaviour
         private SpellCard SpellInfo;
     // ==========
 
-    public void CreateAttackCard(AttackCard card, Sprite image)
+    [HideInInspector] public PlayerMainScript MainScript;
+
+    public Color NormalCard_Color = Color.blue;
+    public Color onPointerEnterCard_Color = Color.red;
+
+    public void ClickedCard()
     {
-        // Save the info
-        AttackInfo = card;
-
-        //Change the visuals of the GameObject
-        Text_CardName.text = card.Name;
-        Text_Sign.text = card.Sign;
-        Image_Card.sprite = image;
-        
-        Text_Type.text = "Ataque";
-
-        Text_Description.text = "Dá " + card.ImageName + " de dano ao inimigo";
+        MainScript.CombatScript.ListOfEnemies[0].TakeDamage(1);
     }
 
-    public void CreateSpellCard(SpellCard card, Sprite image)
+    public void PointerEnter_Card()
+    {
+        GetComponent<Image>().color = onPointerEnterCard_Color;
+    }
+
+    public void PointerExit_Card()
+    {
+        GetComponent<Image>().color = NormalCard_Color;
+    }
+
+
+    #region Card Creation
+        public void CreateCard(BaseCard card, Sprite image)
+        {
+            if(card.Type == "AttackCard")
+            {
+                CreateAttackCard((AttackCard)card, image);
+            }
+            else
+            {
+                CreateSpellCard((SpellCard)card, image);
+            }
+            /* DEV */ //Debug.Log("Created: " + card.Name);
+        }
+
+        private void CreateAttackCard(AttackCard card, Sprite image)
+        {
+            // Save the info
+            AttackInfo = card;
+
+            //Change the visuals of the GameObject
+            Text_CardName.text = card.Name;
+            Text_Sign.text = card.Sign;
+            Image_Card.sprite = image;
+            
+            Text_Type.text = "Ataque";
+
+            Text_Description.text = "Dá " + card.ImageName + " de dano ao inimigo";
+        }
+
+        private void CreateSpellCard(SpellCard card, Sprite image)
     {
         // Save the info
         SpellInfo = card;
@@ -90,4 +132,5 @@ public class BattleCard : MonoBehaviour
                 break;
         }
     }
+    #endregion
 }
