@@ -20,17 +20,21 @@ public class PlayerMainScript : MonoBehaviour
 
     private int int_CurrentScene;
 
+    #region Coroutine Storage
+        /// <summary>
+        ///     PUBLIC: Where the currently active Coroutines are stored. Check using 'Bool_InterruptableCoroutineIsHappening'
+        /// </summary>
+        [HideInInspector] public Coroutine InterruptableCoroutine;
+        [HideInInspector] public bool Bool_InterruptableCoroutineIsHappening;
+    #endregion
+
     private void Awake()
     {
         int_CurrentScene = SceneManager.GetActiveScene().buildIndex;
 
         EssentialCanvas = GameObject.Find("Essential Canvas");
 
-        if(int_CurrentScene != 2)
-        {
-            CombatCanvas = GameObject.Find("Combat Canvas");
-            CombatCanvas.SetActive(false);
-        } 
+        if(int_CurrentScene != 2) CombatCanvas = GameObject.Find("Combat Canvas"); 
 
         #region Script Initializing
             MovementScript = GetComponent<PlayerMovement>();
@@ -61,9 +65,6 @@ public class PlayerMainScript : MonoBehaviour
         {
             // ## AI movement to approach enemies
             MovementScript.ForcedMove();
-
-            // // ## Combat Interactions
-            // CombatScript.Combat_Update();
         } 
 
         // ## Update Camera Position relative to the player, and allow zoom in and out

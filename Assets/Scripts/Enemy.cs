@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour
     private Slider EnemyHPSlider;
     private PlayerMainScript MainScript;
 
+    [HideInInspector] public bool AboutToDie = false;
+
     public void InitializeEnemy(PlayerMainScript PMS)
     {
         MainScript = PMS;
@@ -41,26 +43,28 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int Damage)
     {
         int resultingDamage = Damage - Defense;
+            /* Sleep here for animation purposes? */
         if (resultingDamage > 0)
         {
             EnemyHPSlider.value -= resultingDamage;
-            if (EnemyHPSlider.value <= 0) OnDeath();
+            if (EnemyHPSlider.value <= 0) AboutToDie = true;
         }
         else 
         {
             // Possibly make a "Blocked" thing appear?
         }
-
     }
 
-    private void OnDeath()
+    public void OnDeath()
     {
-        // SOME STUFF IS NEEDED FIRST
+        // SOME STUFF IS NEEDED FIRST (EXP)
 
         MainScript.MoneyScript.Set_Money(OnDeath_Money);
 
         MainScript.CombatScript.NextEnemyFight();
 
+        /* Instead of Destroy, just push the creature aside and use the death animation */
         Destroy(transform.gameObject);
+        /* ==== */
     }
 }

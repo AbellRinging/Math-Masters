@@ -57,21 +57,39 @@ public class BattleCard : MonoBehaviour
     public Color NormalCard_Color = Color.blue;
     public Color onPointerEnterCard_Color = Color.red;
 
-    public void ClickedCard()
-    {
-        MainScript.CombatScript.ListOfEnemies[0].TakeDamage(1);
-    }
+    #region Interactibility with the cards
+        /// <summary>
+        ///     When an attack card gets selected, send its card information to CombatScript to end the turn ### DONT FORGET player can use up to one spell per turn before the attack (Will have to call another method in CoombatScript)
+        /// </summary>
+        public void ClickedCard()
+        {
+            if(!MainScript.Bool_InterruptableCoroutineIsHappening)
+            {
+                if(AttackInfo != null)
+                {
+                    MainScript.CombatScript.EndTurn(AttackInfo);
+                    GameObject.Destroy(gameObject);
+                }
+                else if(SpellInfo != null)
+                {
+                    MainScript.CombatScript.SpellCast(SpellInfo);
+                    //gameObject.SetActive(false);
+                    GameObject.Destroy(gameObject);
+                }
+                else Debug.LogError("Unexpected error in ClickedCard method, card has neither AttackInfo nor SpellInfo");
+            }
+        }
 
-    public void PointerEnter_Card()
-    {
-        GetComponent<Image>().color = onPointerEnterCard_Color;
-    }
+        public void PointerEnter_Card()
+        {
+            GetComponent<Image>().color = onPointerEnterCard_Color;
+        }
 
-    public void PointerExit_Card()
-    {
-        GetComponent<Image>().color = NormalCard_Color;
-    }
-
+        public void PointerExit_Card()
+        {
+            GetComponent<Image>().color = NormalCard_Color;
+        }
+    #endregion
 
     #region Card Creation
         public void CreateCard(BaseCard card, Sprite image)
