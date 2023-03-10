@@ -10,6 +10,13 @@ public class BattleCard : MonoBehaviour
         This script is attached to the cards
     */
 
+    #region GameObject Card Visual Components
+        public TextMeshProUGUI Text_CardName;
+        public Image           Image_Card;
+        public TextMeshProUGUI Text_Type; // Ataque ou Feitiço
+        public TextMeshProUGUI Text_Description;
+    #endregion
+
     #region Card Information Classes for the code
         public class BaseCard 
         { 
@@ -20,8 +27,6 @@ public class BattleCard : MonoBehaviour
 
         [System.Serializable] public class AttackCard : BaseCard
         {
-            public string Sign;
-
             public AttackCard()
             {
                 Type = "AttackCard";
@@ -39,14 +44,6 @@ public class BattleCard : MonoBehaviour
         }
     #endregion
 
-    #region GameObject Card Visual Components
-        public TextMeshProUGUI Text_CardName;
-        public TextMeshProUGUI Text_Sign;
-        public Image           Image_Card;
-        public TextMeshProUGUI Text_Type; // Ataque ou Feitiço
-        public TextMeshProUGUI Text_Description;
-    #endregion
-
     // ========== Is one or the other, not both
         private AttackCard AttackInfo;
         private SpellCard SpellInfo;
@@ -57,21 +54,39 @@ public class BattleCard : MonoBehaviour
     public Color NormalCard_Color = Color.blue;
     public Color onPointerEnterCard_Color = Color.red;
 
-    public void ClickedCard()
-    {
-        MainScript.CombatScript.ListOfEnemies[0].TakeDamage(1);
-    }
+    #region Interactibility with the cards
+        /// <summary>
+        ///     When an attack card gets selected, send its card information to CombatScript to end the turn ### DONT FORGET player can use up to one spell per turn before the attack (Will have to call another method in CoombatScript)
+        /// </summary>
+        public void ClickedCard()
+        {
+            if(!MainScript.Bool_InterruptableCoroutineIsHappening)
+            {
+                if(AttackInfo != null)
+                {
+                    MainScript.CombatScript.EndTurn(AttackInfo);
+                    GameObject.Destroy(gameObject);
+                }
+                else if(SpellInfo != null)
+                {
+                    MainScript.CombatScript.SpellCast(SpellInfo);
+                    //gameObject.SetActive(false);
+                    GameObject.Destroy(gameObject);
+                }
+                else Debug.LogError("Unexpected error in ClickedCard method, card has neither AttackInfo nor SpellInfo");
+            }
+        }
 
-    public void PointerEnter_Card()
-    {
-        GetComponent<Image>().color = onPointerEnterCard_Color;
-    }
+        public void PointerEnter_Card()
+        {
+            GetComponent<Image>().color = onPointerEnterCard_Color;
+        }
 
-    public void PointerExit_Card()
-    {
-        GetComponent<Image>().color = NormalCard_Color;
-    }
-
+        public void PointerExit_Card()
+        {
+            GetComponent<Image>().color = NormalCard_Color;
+        }
+    #endregion
 
     #region Card Creation
         public void CreateCard(BaseCard card, Sprite image)
@@ -94,7 +109,6 @@ public class BattleCard : MonoBehaviour
 
             //Change the visuals of the GameObject
             Text_CardName.text = card.Name;
-            Text_Sign.text = card.Sign;
             Image_Card.sprite = image;
             
             Text_Type.text = "Ataque";
@@ -109,7 +123,6 @@ public class BattleCard : MonoBehaviour
 
         //Change the visuals of the GameObject
         Text_CardName.text = card.Name;
-        Text_Sign.text = " ";
         Image_Card.sprite = image;
 
         Text_Type.text = "Feitiço";

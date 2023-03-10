@@ -88,13 +88,17 @@ public class PlayerMovement : Parent_PlayerScript
         }
     }
 
+
+
+
     /// <summary>
     ///     Used during Combat, uses NavigationAgent to move the player. Player can not influence this movement
     /// </summary>
     public void ForcedMove()
     {
-        if (isMovingToClickedLocation && !NavigationAgent.hasPath)
+        if (isMovingToClickedLocation && !NavigationAgent.hasPath && NavigationAgent.velocity != Vector3.zero)
         {
+                    /* DEV */ //Debug.LogError("Stopped moving");
             isMovingToClickedLocation = false;
         }
         // # Stop moving and allow cards to appear on screen (by starting the fight)
@@ -107,6 +111,8 @@ public class PlayerMovement : Parent_PlayerScript
 
     public void ForceMoveToLocation(Vector3 WhereToGo)
     {
+        
+        NavigationAgent.ResetPath();
         NavigationAgent.SetDestination(WhereToGo);
         isMovingToClickedLocation = true;
 

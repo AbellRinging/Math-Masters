@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
 using UnityEngine.UI;
-using System.Linq;
 
 public class PlayerDeck : Parent_PlayerScript
 {
@@ -11,7 +10,7 @@ public class PlayerDeck : Parent_PlayerScript
         ## Used by the player prefab. Stores the cards' info in runtime, and is where the hand is located.
         ADD A BUNCH OF TIMERS TO GIVE ROOM FOR ANIMATIONS
     */
-    [HideInInspector] public GameObject Prefab_Card;
+    public GameObject Prefab_Card;
 
     #region Card Database to get information when generating cards in the UI
         /* For grabbing a random card */
@@ -35,6 +34,11 @@ public class PlayerDeck : Parent_PlayerScript
         public int Int_HandSize = 5;
     [Tooltip("Defines the probability a spell card is drawn. Range -> 1 to 0")]
         public float PercentageToDrawSpell = 0.05f;
+
+    [Tooltip("The amount it takes to draw a card, in seconds")]
+        public float DrawingSpeed = 0.2f;
+    [Tooltip("The amount it takes to discard a card, in seconds")]
+        public float DiscardingSpeed = 0.2f;
 
     protected override void Custom_Start()
     {
@@ -83,61 +87,93 @@ public class PlayerDeck : Parent_PlayerScript
         /* DEV */ Debug.Log("Number of attack cards initialized: " + Dic_AttackCard.Count + "\n    Number of spell cards initialized: " + Dic_SpellCard.Count);
     }
     
-    /// <summary>
-    ///     PUBLIC: Generates a new hand of cards, one of which is the answer to the Question. IN CASE OF IMPLEMENTING PROCEDURALY GENERATED LEVELS, MODIFY THIS METHOD??
-    /// </summary>
-    public void Generate_NewHand(int answerToQuestion)
-    {
-        Vector3[] cardCoordinates = Generate_CardCoordinates();
-        bool[] BoolArray_RNGAssistant = Enumerable.Repeat(true, cardCoordinates.GetLength(0)).ToArray();
-
-        int randomInt = Random.Range(0, BoolArray_RNGAssistant.GetLength(0));
-        
-        Array_Hand[randomInt] = Generate_CardPrefab(cardCoordinates[randomInt], Dic_AttackCard[answerToQuestion.ToString()], Dic_AttackCardSprites[answerToQuestion.ToString()]);
-        BoolArray_RNGAssistant[randomInt] = false;
-        /* DEV */ //Debug.Log("Answer " + answerToQuestion + " was placed in the " + (randomInt + 1) + " index");
-
-        bool SpellCardDrawn = false;
-        for(int i = 0; i < Int_HandSize; ++i)
+    #region Generate New Hand
+        /// <summary>
+        ///     PUBLIC: Generates a new hand of cards, one of which is the answer to the Question. IN CASE OF IMPLEMENTING PROCEDURALY GENERATED LEVELS, MODIFY THIS METHOD??
+        /// </summary>
+        public void Generate_NewHand(int answerToQuestion)
         {
-            if(BoolArray_RNGAssistant[i])
-            {
-                float randomfloat = Random.value;
+            Vector3[] cardCoordinates = Generate_CardCoordinates();
+            int randomInt = Random.Range(0, cardCoordinates.GetLength(0));
 
-                // Decide if a spell should be created or not. Only 1 such card can be created per turn
-                if(!SpellCardDrawn && randomfloat <= PercentageToDrawSpell)
+            MainScript.Bool_InterruptableCoroutineIsHappening = true;
+            MainScript.InterruptableCoroutine = StartCoroutine(Coroutine_Generate_NewHand(answerToQuestion, cardCoordinates, randomInt));
+        }
+        private IEnumerator Coroutine_Generate_NewHand(int answerToQuestion, Vector3[] cardCoordinates, int randomInt){
+            bool SpellCardDrawn = false;
+            for(int i = 0; i < Int_HandSize; ++i)
+            {
+                if(i != randomInt)
                 {
-                    randomInt = Random.Range(0, Array_SpellCards.GetLength(0));
-                    Array_Hand[i] = Generate_CardPrefab(cardCoordinates[i], Array_SpellCards[randomInt], Dic_SpellCardSprites[Array_SpellCards[randomInt].ImageName]);
-                    SpellCardDrawn = !SpellCardDrawn;
-                }    
+                    float randomfloat = Random.value;
+
+                    // Decide if a spell should be created or not. Only 1 such card can be created per turn
+                    if(!SpellCardDrawn && randomfloat <= PercentageToDrawSpell)
+                    {
+                        int randomInt2 = Random.Range(0, Array_SpellCards.GetLength(0));
+                        Array_Hand[i] = Generate_CardPrefab(cardCoordinates[i], Array_SpellCards[randomInt2], Dic_SpellCardSprites[Array_SpellCards[randomInt2].ImageName]);
+                        SpellCardDrawn = !SpellCardDrawn;
+                    }    
+                    else
+                    {
+                        int randomInt2 = Random.Range(0, Array_AttackCards.GetLength(0));
+                        Array_Hand[i] = Generate_CardPrefab(cardCoordinates[i], Array_AttackCards[randomInt2], Dic_AttackCardSprites[Array_AttackCards[randomInt2].ImageName]);
+                    }
+                }
                 else
                 {
-                    randomInt = Random.Range(0, Array_AttackCards.GetLength(0));
-                    Array_Hand[i] = Generate_CardPrefab(cardCoordinates[i], Array_AttackCards[randomInt], Dic_AttackCardSprites[Array_AttackCards[randomInt].ImageName]);
-                }                                        
-
+                    Array_Hand[i] = Generate_CardPrefab(cardCoordinates[i], Dic_AttackCard[answerToQuestion.ToString()], Dic_AttackCardSprites[answerToQuestion.ToString()]);
+                            /* DEV */ //Debug.Log("Answer " + answerToQuestion + " was placed in the " + (randomInt + 1) + " index");
+                }
+                yield return new WaitForSeconds(DrawingSpeed);
             }
+            MainScript.Bool_InterruptableCoroutineIsHappening = false;
         }
-    }
 
-    /// <summary>
-    ///     PRIVATE: Returns an array of coordinates where to instantiate cards
-    /// </summary>
-    private Vector3[] Generate_CardCoordinates()
-    {
-        Vector3[] cardCoordinates = new Vector3[Int_HandSize];
-        
-        Vector2 canvasSize = MainScript.CombatCanvas.GetComponent<CanvasScaler>().referenceResolution;
-        float distanceBetweenCards = canvasSize.x / (Int_HandSize + 1);
-        
-        for(int i = 0; i < Int_HandSize; ++i)
+        /// <summary>
+        ///     PRIVATE: Returns an array of coordinates where to instantiate cards
+        /// </summary>
+        private Vector3[] Generate_CardCoordinates()
         {
-            cardCoordinates[i] = RT_DeckMat.position + new Vector3(distanceBetweenCards * (i + 1) - canvasSize.x/2, 0, 0);
+            Vector3[] cardCoordinates = new Vector3[Int_HandSize];
+            
+            Vector2 canvasSize = MainScript.CombatCanvas.GetComponent<CanvasScaler>().referenceResolution;
+            float distanceBetweenCards = canvasSize.x / (Int_HandSize + 1);
+            
+            for(int i = 0; i < Int_HandSize; ++i)
+            {
+                cardCoordinates[i] = RT_DeckMat.position + new Vector3(distanceBetweenCards * (i + 1) - canvasSize.x/2, 0, 0);
+            }
+
+            return cardCoordinates;
         }
 
-        return cardCoordinates;
-    }
+    #endregion
+
+    #region Discard Hand
+        public bool Bool_Coroutine_Discard_Hand = false;
+        /// <summary>
+        ///     PUBLIC: Destroys each card in hand. Uses a Coroutine
+        /// </summary>
+        public void Discard_Hand()
+        {
+            MainScript.Bool_InterruptableCoroutineIsHappening = true;
+            MainScript.InterruptableCoroutine = StartCoroutine(Coroutine_Discard_Hand());
+        }
+        private IEnumerator Coroutine_Discard_Hand()
+        {
+            Bool_Coroutine_Discard_Hand = true;
+            foreach(GameObject card in Array_Hand)
+            {
+                if(card != null){
+                    yield return new WaitForSeconds(DiscardingSpeed);
+                    GameObject.Destroy(card);
+                }
+            }
+            Bool_Coroutine_Discard_Hand = false;
+            MainScript.Bool_InterruptableCoroutineIsHappening = false;
+        }
+    #endregion
 
     private GameObject Generate_CardPrefab(Vector3 WhereToPut, BattleCard.BaseCard card, Sprite image)
     {
@@ -148,7 +184,6 @@ public class PlayerDeck : Parent_PlayerScript
 
         return newcard;
     }
-
 
 
 

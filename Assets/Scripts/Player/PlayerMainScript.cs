@@ -13,6 +13,7 @@ public class PlayerMainScript : MonoBehaviour
         [HideInInspector] public PlayerCombat CombatScript;
         [HideInInspector] public PlayerMoney MoneyScript;
         [HideInInspector] public PlayerDeck DeckScript;
+        [HideInInspector] public PlayerQuestion QuestionScript;
     #endregion
     
     [HideInInspector] public GameObject EssentialCanvas;
@@ -20,17 +21,21 @@ public class PlayerMainScript : MonoBehaviour
 
     private int int_CurrentScene;
 
+    #region Coroutine Storage
+        /// <summary>
+        ///     PUBLIC: Where the currently active Coroutines are stored. Check using 'Bool_InterruptableCoroutineIsHappening'
+        /// </summary>
+        [HideInInspector] public Coroutine InterruptableCoroutine;
+        [HideInInspector] public bool Bool_InterruptableCoroutineIsHappening;
+    #endregion
+
     private void Awake()
     {
         int_CurrentScene = SceneManager.GetActiveScene().buildIndex;
 
         EssentialCanvas = GameObject.Find("Essential Canvas");
 
-        if(int_CurrentScene != 2)
-        {
-            CombatCanvas = GameObject.Find("Combat Canvas");
-            CombatCanvas.SetActive(false);
-        } 
+        if(int_CurrentScene != 2) CombatCanvas = GameObject.Find("Combat Canvas"); 
 
         #region Script Initializing
             MovementScript = GetComponent<PlayerMovement>();
@@ -40,6 +45,7 @@ public class PlayerMainScript : MonoBehaviour
             CombatScript = GetComponent<PlayerCombat>();
             MoneyScript = GetComponent<PlayerMoney>();
             DeckScript = GetComponent<PlayerDeck>();
+            QuestionScript = GetComponent<PlayerQuestion>();
 
             MovementScript.Run_At_Start();
             HealthScript.Run_At_Start();
@@ -48,6 +54,7 @@ public class PlayerMainScript : MonoBehaviour
             if(int_CurrentScene != 2) CombatScript.Run_At_Start();
             MoneyScript.Run_At_Start();
             if(int_CurrentScene != 2) DeckScript.Run_At_Start();
+            if(int_CurrentScene != 2) QuestionScript.Run_At_Start();
         #endregion
     }
 
@@ -61,9 +68,6 @@ public class PlayerMainScript : MonoBehaviour
         {
             // ## AI movement to approach enemies
             MovementScript.ForcedMove();
-
-            // // ## Combat Interactions
-            // CombatScript.Combat_Update();
         } 
 
         // ## Update Camera Position relative to the player, and allow zoom in and out

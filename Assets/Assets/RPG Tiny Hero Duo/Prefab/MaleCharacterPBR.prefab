@@ -2120,6 +2120,7 @@ GameObject:
   - component: {fileID: 265341991046214006}
   - component: {fileID: 1852930541}
   - component: {fileID: 350909195}
+  - component: {fileID: 6832006452628135382}
   - component: {fileID: 6667020932940612796}
   m_Layer: 0
   m_Name: MaleCharacterPBR
@@ -2238,6 +2239,7 @@ MonoBehaviour:
   DeckScript: {fileID: 0}
   EssentialCanvas: {fileID: 0}
   CombatCanvas: {fileID: 0}
+  Bool_InterruptableCoroutineIsHappening: 0
 --- !u!114 &436350410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2319,6 +2321,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Float_StoppingDistance: 7
   ListOfEnemies: []
+  CurrentEnemy: {fileID: 0}
+  Bool_BattleIsHappening: 0
+--- !u!114 &6832006452628135382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8189980434977739222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4aac0c3af0404f4d831a74bbb81e508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6667020932940612796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2332,7 +2348,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prefab_Card: {fileID: 2602644919496097891, guid: c2e33b1d8731ada45a310fdd6bd2a2fc, type: 3}
-  Int_HandSize: 3
+  Array_Hand: []
+  Int_HandSize: 5
+  PercentageToDrawSpell: 0.5
+  DrawingSpeed: 0.2
+  DiscardingSpeed: 0.2
+  Bool_Coroutine_Discard_Hand: 0
   Toggle: 0
   RT_DeckMat: {fileID: 0}
   cs: {fileID: 0}

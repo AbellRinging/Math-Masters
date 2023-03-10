@@ -2,21 +2,42 @@
 	{
         "Type": "AttackCard",
         "Name": "Test1",
-        "Sign": "x",
         "ImageName": "1"
     },
     
     {
         "Type": "AttackCard",
         "Name": "Test2",
-        "Sign": "x",
         "ImageName": "2"
+    },
+    
+    {
+        "Type": "AttackCard",
+        "Name": "Test5",
+        "ImageName": "5"
+    },
+    
+    {
+        "Type": "AttackCard",
+        "Name": "Test7",
+        "ImageName": "7"
     },
 
     {
         "Type": "AttackCard",
         "Name": "Test3",
-        "Sign": "x",
         "ImageName": "3"
+    },
+
+    {
+        "Type": "AttackCard",
+        "Name": "Test21",
+        "ImageName": "21"
+    },
+
+    {
+        "Type": "AttackCard",
+        "Name": "Test25",
+        "ImageName": "25"
     }
 ]

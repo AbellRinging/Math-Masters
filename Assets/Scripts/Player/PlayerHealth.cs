@@ -26,4 +26,14 @@ public class PlayerHealth : Parent_PlayerScript
     {
         slider.value = Health;
     }
+
+    public void TakeDamage(int damage)
+    {
+
+    }
+
+    public void Heal(int HealthRegeneration)
+    {
+
+    }
 }

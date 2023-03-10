@@ -6,56 +6,30 @@ using UnityEngine.SceneManagement;
 public class PlayerCombat : Parent_PlayerScript
 {
     [Tooltip ("Player will stop further away from the enemy")]
-    public float Float_StoppingDistance;    
+        public float Float_StoppingDistance;    
     [HideInInspector] public List<Enemy> ListOfEnemies;
+    [HideInInspector] public Enemy CurrentEnemy;
     [HideInInspector] public bool Bool_BattleIsHappening = false;
+    
+
+
 
     protected override void Custom_Start()
     {
         ListOfEnemies = new List<Enemy>();
         foreach (Enemy enemy in GameObject.Find("Enemies").GetComponentsInChildren<Enemy>())
         {
-            /* DEV */ //Debug.Log(enemy.gameObject.name);
+                    /* DEV */ //Debug.Log(enemy.gameObject.name);
             ListOfEnemies.Add(enemy);
             enemy.InitializeEnemy(MainScript);
         }
-        ListOfEnemies[0].PrepareForCombat();
-        MainScript.MovementScript.ForceMoveToLocation(new Vector3(ListOfEnemies[0].transform.position.x, transform.position.y, ListOfEnemies[0].transform.position.z + Float_StoppingDistance));
+
+        SetUpCombat();
     }
 
     /// <summary>
-    ///     Where the player interacts with the cards and where the turns pass. Updates every second, assuming there is battle.
+    ///     First Phase of Combat
     /// </summary>
-    // public void Combat_Update()
-    // {
-    //     /*
-    //         Implement Turns here (make use of NewTurn() )
-    //     */
-    //     if (Input.GetKeyDown(KeyCode.E))
-    //     {
-    //         ListOfEnemies[0].TakeDamage(1);
-    //     }
-    // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void BeginFight()
     {
         MainScript.CombatCanvas.SetActive(true);
@@ -63,18 +37,115 @@ public class PlayerCombat : Parent_PlayerScript
         NewTurn();
     }
 
-    public void NewTurn()
-    {
-        /*
-            MISSING HERE PICKING THE QUESTION AND USING THE ANSWER FOR Generate_NewHand METHOD
-        */
 
-        MainScript.DeckScript.Generate_NewHand(1);
+
+
+
+    #region Turn phases
+        private bool ASpellWasCast = false;     // Used to limit the number of castable spells per turn by one.
+
+        /// <summary>
+        ///     To start each turn
+        /// </summary>
+        public void NewTurn()
+        {
+            int answerToQuestion = MainScript.QuestionScript.Generate_NewQuestion(CurrentEnemy.Tier);
+
+            MainScript.DeckScript.Generate_NewHand(answerToQuestion);
+        }
+
+        
+        /// <summary>
+        ///     Player picks a spell card. Changes how the battle will happen. Can only happen once per turn
+        /// </summary>
+        public void SpellCast(BattleCard.SpellCard spell)
+        {
+            if(!ASpellWasCast)
+            {
+                switch(spell.SpellType){
+                    case("Suspend"):
+                            //"Neste turno o inimigo fica impossibilitado de atacar";
+                        /* To be implemented*/
+
+                        break;
+                    case("ExtraDMG"):
+                            //"Durante um turno, tira mais 20% de dano no próximo ataque";
+                        /* To be implemented*/
+
+                        break;
+                    case("Heal"):
+                            //"Cura a personagem em 10 pontos de vida";
+                        /* To be implemented*/
+
+                        break;
+                    case("DoubleAttack"):
+                            //"Durante um turno, ataca duas vezes";
+                        /* To be implemented*/
+
+                        break;
+                }
+
+                ASpellWasCast = true;
+            }
+        }
+
+        /// <summary>
+        ///     End of turn after the player picks an attack card. Creature or player takes damage if the picked card is correct or wrong
+        /// </summary>
+        public void EndTurn(BattleCard.AttackCard attack)
+        {
+            if(MainScript.QuestionScript.AttemptAtAnswer(attack))
+            {
+                CurrentEnemy.TakeDamage(1);
+            }
+            else
+            {
+                MainScript.HealthScript.TakeDamage(1);
+            }
+                
+
+            ASpellWasCast = false;
+            MainScript.DeckScript.Discard_Hand();
+            // if(CurrentEnemy.AboutToDie) CurrentEnemy.OnDeath();
+            // else StartCoroutine(Coroutine_EndTurnWait());   // If the creature stays alive, begin another turn
+            StartCoroutine(Coroutine_EndTurnWait());
+        }
+        private IEnumerator Coroutine_EndTurnWait()
+        {
+            for(;;)
+            {
+                if (!MainScript.DeckScript.Bool_Coroutine_Discard_Hand)
+                {
+                    if(CurrentEnemy.AboutToDie) CurrentEnemy.OnDeath();
+                    else NewTurn();
+
+                    yield break;
+                }
+                else yield return new WaitForSeconds(.1f);
+            }
+        }
+    #endregion
+
+
+
+
+
+
+
+
+
+    private void SetUpCombat()
+    {
+        MainScript.CombatScript.Bool_BattleIsHappening = false;
+        MainScript.CombatCanvas.SetActive(false);
+
+        CurrentEnemy = ListOfEnemies[0];
+        CurrentEnemy.PrepareForCombat();
+        MainScript.MovementScript.ForceMoveToLocation(new Vector3(CurrentEnemy.transform.position.x, transform.position.y, CurrentEnemy.transform.position.z + Float_StoppingDistance));
     }
 
-
     /// <summary>
-    ///     Called by a dying enemy INCOMPLETE (EXP GAIN)
+    ///     Last Phase of Combat. Called by a dying enemy ### INCOMPLETE (EXP GAIN)
     /// </summary>
     public void NextEnemyFight()
     {
@@ -82,10 +153,7 @@ public class PlayerCombat : Parent_PlayerScript
 
         if (ListOfEnemies.Count > 0)
         {
-            MainScript.CombatScript.Bool_BattleIsHappening = false;
-            MainScript.CombatCanvas.SetActive(false);
-            ListOfEnemies[0].PrepareForCombat();
-            MainScript.MovementScript.ForceMoveToLocation(new Vector3(ListOfEnemies[0].transform.position.x, transform.position.y, ListOfEnemies[0].transform.position.z + Float_StoppingDistance));
+            SetUpCombat();
         }
         else LevelComplete();
     }

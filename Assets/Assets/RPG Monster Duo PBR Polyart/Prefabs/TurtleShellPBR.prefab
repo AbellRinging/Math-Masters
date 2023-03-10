@@ -859,11 +859,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cebc7cec8a59f6340b83d9ddcabe01c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 0
+  MaxHealth: 5
   Attack: 0
   Defense: 0
+  Tier: 1
   OnDeath_EXP: 0
   OnDeath_Money: 0
+  AboutToDie: 0
 --- !u!1 &1822049695589022
 GameObject:
   m_ObjectHideFlags: 0
