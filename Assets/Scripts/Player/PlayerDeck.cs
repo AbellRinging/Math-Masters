@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
 using UnityEngine.UI;
-using System.Linq;
 
 public class PlayerDeck : Parent_PlayerScript
 {
@@ -11,7 +10,7 @@ public class PlayerDeck : Parent_PlayerScript
         ## Used by the player prefab. Stores the cards' info in runtime, and is where the hand is located.
         ADD A BUNCH OF TIMERS TO GIVE ROOM FOR ANIMATIONS
     */
-    [HideInInspector] public GameObject Prefab_Card;
+    public GameObject Prefab_Card;
 
     #region Card Database to get information when generating cards in the UI
         /* For grabbing a random card */

@@ -10,6 +10,13 @@ public class BattleCard : MonoBehaviour
         This script is attached to the cards
     */
 
+    #region GameObject Card Visual Components
+        public TextMeshProUGUI Text_CardName;
+        public Image           Image_Card;
+        public TextMeshProUGUI Text_Type; // Ataque ou Feitiço
+        public TextMeshProUGUI Text_Description;
+    #endregion
+
     #region Card Information Classes for the code
         public class BaseCard 
         { 
@@ -20,8 +27,6 @@ public class BattleCard : MonoBehaviour
 
         [System.Serializable] public class AttackCard : BaseCard
         {
-            public string Sign;
-
             public AttackCard()
             {
                 Type = "AttackCard";
@@ -37,14 +42,6 @@ public class BattleCard : MonoBehaviour
                 Type = "SpellCard";
             }
         }
-    #endregion
-
-    #region GameObject Card Visual Components
-        public TextMeshProUGUI Text_CardName;
-        public TextMeshProUGUI Text_Sign;
-        public Image           Image_Card;
-        public TextMeshProUGUI Text_Type; // Ataque ou Feitiço
-        public TextMeshProUGUI Text_Description;
     #endregion
 
     // ========== Is one or the other, not both
@@ -112,7 +109,6 @@ public class BattleCard : MonoBehaviour
 
             //Change the visuals of the GameObject
             Text_CardName.text = card.Name;
-            Text_Sign.text = card.Sign;
             Image_Card.sprite = image;
             
             Text_Type.text = "Ataque";
@@ -127,7 +123,6 @@ public class BattleCard : MonoBehaviour
 
         //Change the visuals of the GameObject
         Text_CardName.text = card.Name;
-        Text_Sign.text = " ";
         Image_Card.sprite = image;
 
         Text_Type.text = "Feitiço";

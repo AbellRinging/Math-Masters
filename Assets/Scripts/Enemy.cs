@@ -14,6 +14,9 @@ public class Enemy : MonoBehaviour
 
         [Tooltip ("The amount of damage reduced from the player")]
         public int Defense;
+
+        [Tooltip ("How difficult will the questions be")]
+        public int Tier;
     
     [Header ("Rewards upon Death")]
         [Tooltip ("The amount of EXP rewarded to the player")]
@@ -33,7 +36,6 @@ public class Enemy : MonoBehaviour
         EnemyHPSlider = MainScript.CombatCanvas.transform.GetChild(0).GetComponent<Slider>();
     }
 
-    // Use this method in Player Combat???
     public void PrepareForCombat()
     {
         EnemyHPSlider.maxValue = MaxHealth;

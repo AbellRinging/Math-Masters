@@ -49,10 +49,7 @@ public class PlayerCombat : Parent_PlayerScript
         /// </summary>
         public void NewTurn()
         {
-            /*
-                MISSING HERE PICKING THE QUESTION AND USING THE ANSWER FOR Generate_NewHand METHOD
-            */
-            int answerToQuestion = 1;
+            int answerToQuestion = MainScript.QuestionScript.Generate_NewQuestion(CurrentEnemy.Tier);
 
             MainScript.DeckScript.Generate_NewHand(answerToQuestion);
         }
@@ -97,14 +94,21 @@ public class PlayerCombat : Parent_PlayerScript
         /// </summary>
         public void EndTurn(BattleCard.AttackCard attack)
         {
-            /* Missing in checking if the card corresponds to the Question here */
+            if(MainScript.QuestionScript.AttemptAtAnswer(attack))
+            {
                 CurrentEnemy.TakeDamage(1);
-            /* ===== */
+            }
+            else
+            {
+                MainScript.HealthScript.TakeDamage(1);
+            }
+                
 
             ASpellWasCast = false;
             MainScript.DeckScript.Discard_Hand();
-            if(CurrentEnemy.AboutToDie) CurrentEnemy.OnDeath();
-            else StartCoroutine(Coroutine_EndTurnWait());   // If the creature stays alive, begin another turn
+            // if(CurrentEnemy.AboutToDie) CurrentEnemy.OnDeath();
+            // else StartCoroutine(Coroutine_EndTurnWait());   // If the creature stays alive, begin another turn
+            StartCoroutine(Coroutine_EndTurnWait());
         }
         private IEnumerator Coroutine_EndTurnWait()
         {
@@ -112,7 +116,9 @@ public class PlayerCombat : Parent_PlayerScript
             {
                 if (!MainScript.DeckScript.Bool_Coroutine_Discard_Hand)
                 {
-                    NewTurn();
+                    if(CurrentEnemy.AboutToDie) CurrentEnemy.OnDeath();
+                    else NewTurn();
+
                     yield break;
                 }
                 else yield return new WaitForSeconds(.1f);
