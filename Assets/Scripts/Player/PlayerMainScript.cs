@@ -17,6 +17,7 @@ public class PlayerMainScript : MonoBehaviour
     #endregion
     
     [HideInInspector] public GameObject EssentialCanvas;
+    [HideInInspector] public PauseMenu PauseMenuScript;
     [HideInInspector] public GameObject CombatCanvas;
 
     private int int_CurrentScene;
@@ -34,6 +35,7 @@ public class PlayerMainScript : MonoBehaviour
         int_CurrentScene = SceneManager.GetActiveScene().buildIndex;
 
         EssentialCanvas = GameObject.Find("Essential Canvas");
+        PauseMenuScript = EssentialCanvas.GetComponent<PauseMenu>();
 
         if(int_CurrentScene != 2) CombatCanvas = GameObject.Find("Combat Canvas"); 
 
@@ -60,18 +62,21 @@ public class PlayerMainScript : MonoBehaviour
 
     private void Update()
     {
-        // ## Only usable in Samos Town (Scene 2); WASD/Mouse-Click Movement and character direction Component. 
-        if(int_CurrentScene == 2) MovementScript.Move();
-
-        // ## Runs for anywhere other than Samos Town
-        else
+        if(!PauseMenuScript.GameIsPaused)
         {
-            // ## AI movement to approach enemies
-            MovementScript.ForcedMove();
-        } 
+            // ## Only usable in Samos Town (Scene 2); WASD/Mouse-Click Movement and character direction Component. 
+            if(int_CurrentScene == 2) MovementScript.Move();
 
-        // ## Update Camera Position relative to the player, and allow zoom in and out
-        CameraScript.UpdateCamera();
+            // ## Runs for anywhere other than Samos Town
+            else
+            {
+                // ## AI movement to approach enemies
+                MovementScript.ForcedMove();
+            } 
+
+            // ## Update Camera Position relative to the player, and allow zoom in and out
+            CameraScript.UpdateCamera();
+        }
     }
 
     #region Money (Incomplete)

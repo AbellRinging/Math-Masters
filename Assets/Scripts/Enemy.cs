@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
     public void InitializeEnemy(PlayerMainScript PMS)
     {
         MainScript = PMS;
-        EnemyHPSlider = MainScript.CombatCanvas.transform.GetChild(0).GetComponent<Slider>();
+        EnemyHPSlider = MainScript.CombatCanvas.transform.GetChild(0).GetChild(1).GetComponent<Slider>();
     }
 
     public void PrepareForCombat()

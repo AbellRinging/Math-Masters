@@ -2237,7 +2237,9 @@ MonoBehaviour:
   CombatScript: {fileID: 0}
   MoneyScript: {fileID: 0}
   DeckScript: {fileID: 0}
+  QuestionScript: {fileID: 0}
   EssentialCanvas: {fileID: 0}
+  PauseMenuScript: {fileID: 0}
   CombatCanvas: {fileID: 0}
   Bool_InterruptableCoroutineIsHappening: 0
 --- !u!114 &436350410
@@ -2303,7 +2305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7622fa3dcf25fc04ea3dee32c203ea64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraAngle: {x: -35, y: 10, z: -10}
+  CameraAngle: {x: -35, y: 10, z: -5}
   zoomSpeed: 1
   orthographicSizeMin: 7
   orthographicSizeMax: 15
