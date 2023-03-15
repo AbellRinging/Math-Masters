@@ -5536,17 +5536,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5288999041518571932, guid: cc39fa903ec8a0b45a55255d524b2f76, type: 3}
   m_PrefabInstance: {fileID: 685448683}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &686551353 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3816659941227178077, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
-  m_PrefabInstance: {fileID: 3816659941652851373}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &686551355 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3816659941227178079, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
   m_PrefabInstance: {fileID: 3816659941652851373}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 686551353}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
@@ -7336,11 +7331,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5288999041518571932, guid: cc39fa903ec8a0b45a55255d524b2f76, type: 3}
   m_PrefabInstance: {fileID: 915785069}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &921825077 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1470680389, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
-  m_PrefabInstance: {fileID: 3816659941652851373}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &921825078 stripped
 RectTransform:
@@ -17080,38 +17070,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 350909195, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
-      propertyPath: StoppingDistance
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1852930541, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
-      propertyPath: CameraAngle.x
-      value: -35
-      objectReference: {fileID: 0}
-    - target: {fileID: 1852930541, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
-      propertyPath: CameraAngle.z
-      value: -5
-      objectReference: {fileID: 0}
     - target: {fileID: 6667020932940612796, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       propertyPath: cs
       value: 
       objectReference: {fileID: 686551355}
     - target: {fileID: 6667020932940612796, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
-      propertyPath: GO_Draw
-      value: 
-      objectReference: {fileID: 686551353}
-    - target: {fileID: 6667020932940612796, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
-      propertyPath: GO_DeckMat
-      value: 
-      objectReference: {fileID: 921825077}
-    - target: {fileID: 6667020932940612796, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       propertyPath: RT_DeckMat
       value: 
       objectReference: {fileID: 921825078}
-    - target: {fileID: 6667020932940612796, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
-      propertyPath: GO_CombatCanvas
-      value: 
-      objectReference: {fileID: 686551353}
     - target: {fileID: 8189980434977739222, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       propertyPath: m_Name
       value: MaleCharacterPBR
@@ -17494,50 +17460,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 996635999, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -355
-      objectReference: {fileID: 0}
-    - target: {fileID: 996635999, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -150
-      objectReference: {fileID: 0}
-    - target: {fileID: 321404893619566880, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 321404893619566880, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 321404893619566880, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 321404893619566880, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 321404893619566880, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 321404893619566880, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 321404893619566880, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -300
-      objectReference: {fileID: 0}
-    - target: {fileID: 321404893619566880, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -150
-      objectReference: {fileID: 0}
-    - target: {fileID: 2103586514066282915, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
-      propertyPath: m_Texture
-      value: 
-      objectReference: {fileID: 8400000, guid: fe048e338d11e1244b707c41dec4ebe5, type: 2}
     - target: {fileID: 3816659941227178073, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -17625,14 +17547,6 @@ PrefabInstance:
     - target: {fileID: 3816659941227178077, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
       propertyPath: m_Name
       value: Combat Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6578495448238889661, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 193
-      objectReference: {fileID: 0}
-    - target: {fileID: 6578495448238889661, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
