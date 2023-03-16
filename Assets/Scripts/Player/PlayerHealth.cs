@@ -10,10 +10,10 @@ public class PlayerHealth : Parent_PlayerScript
 
     protected override void Custom_Start()
     {
-        // slider = MainScript.EssentialCanvas.transform.GetChild(0).GetComponent<Slider>();
+        slider = MainScript.EssentialCanvas.transform.GetChild(0).GetComponent<Slider>();
 
-        // SetMaxHealth(StartingMaxHealth);
-        // SetHealth((int)slider.maxValue);
+        SetMaxHealth(StartingMaxHealth);
+        SetHealth((int)slider.maxValue);
     }
 
     public void SetMaxHealth(int maxHealth)
