@@ -16813,10 +16813,13 @@ PrefabInstance:
       value: Combat Canvas
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 3816659941227178077, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
       propertyPath: m_IsActive
       value: 1
 =======
+=======
+>>>>>>> parent of dbf28b0 (Forgot about commiting the level change)
     - target: {fileID: 6578495448238889661, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 193
@@ -16824,6 +16827,9 @@ PrefabInstance:
     - target: {fileID: 6578495448238889661, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+<<<<<<< HEAD
+>>>>>>> parent of dbf28b0 (Forgot about commiting the level change)
+=======
 >>>>>>> parent of dbf28b0 (Forgot about commiting the level change)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
