@@ -451,11 +451,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 3
-  Attack: 0
-  Defense: 0
   Tier: 1
-  OnDeath_EXP: 0
-  OnDeath_Money: 5
+  OnDeath_EXP: 20
+  OnDeath_Money: 12
   AboutToDie: 0
 --- !u!1 &1989916952965676
 GameObject:
