@@ -3,13 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public bool GameIsPaused = false;
-
     public GameObject pauseMenuUI;
+    [HideInInspector] public PlayerMainScript MainScript;
+    [HideInInspector] public bool GameIsPaused = false;
+
+    private bool PlayerDied = false;
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(!PlayerDied && Input.GetKeyDown(KeyCode.Escape))
         {
             if(GameIsPaused)
             {
@@ -39,7 +41,7 @@ public class PauseMenu : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("SamosTown");
     }
 
     public void QuitGame()

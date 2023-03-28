@@ -5,35 +5,26 @@ using UnityEngine.UI;
 
 public class PlayerHealth : Parent_PlayerScript
 {
-    public int StartingMaxHealth;
-    private Slider slider;
+    public int MaxHealth;
+    private HeartContainerScript HeartContainer;
 
     protected override void Custom_Start()
     {
-        // slider = MainScript.EssentialCanvas.transform.GetChild(0).GetComponent<Slider>();
-
-        // SetMaxHealth(StartingMaxHealth);
-        // SetHealth((int)slider.maxValue);
+        HeartContainer = MainScript.EssentialCanvas.transform.Find("Player").transform.Find("Heart Container").GetComponent<HeartContainerScript>();
+        HeartContainer.SpawnHearts(MaxHealth, true);
     }
 
-    public void SetMaxHealth(int maxHealth)
-    {
-        slider.maxValue = maxHealth;
-        slider.minValue = 0;
-    }
 
-    public void SetHealth(int Health)
+    public bool TakeDamage()
     {
-        slider.value = Health;
-    }
-
-    public void TakeDamage(int damage)
-    {
-
+        return HeartContainer.ReduceHealth();
     }
 
     public void Heal(int HealthRegeneration)
     {
-
+        for(int i = 0; i < HealthRegeneration; i++)
+        {
+            HeartContainer.RegenerateHealth();
+        }
     }
 }

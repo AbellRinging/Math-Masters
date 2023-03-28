@@ -96,18 +96,20 @@ public class PlayerCombat : Parent_PlayerScript
         {
             if(MainScript.QuestionScript.AttemptAtAnswer(attack))
             {
-                CurrentEnemy.TakeDamage(1);
+                CurrentEnemy.TakeDamage();
             }
             else
             {
-                MainScript.HealthScript.TakeDamage(1);
+                if(MainScript.HealthScript.TakeDamage())
+                {
+                    // Open Pause Menu
+                }
             }
                 
 
             ASpellWasCast = false;
             MainScript.DeckScript.Discard_Hand();
-            // if(CurrentEnemy.AboutToDie) CurrentEnemy.OnDeath();
-            // else StartCoroutine(Coroutine_EndTurnWait());   // If the creature stays alive, begin another turn
+
             StartCoroutine(Coroutine_EndTurnWait());
         }
         private IEnumerator Coroutine_EndTurnWait()
@@ -161,7 +163,7 @@ public class PlayerCombat : Parent_PlayerScript
     private void LevelComplete()
     {
         /*
-            SAVE PROGFRESS IN DATABASE
+            SAVE PROGRESS IN DATABASE
         */
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

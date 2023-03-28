@@ -11096,6 +11096,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4906828391645816, guid: 38efdaadbfe1d624bbee439cb02e7661, type: 3}
   m_PrefabInstance: {fileID: 379994546}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &618955284 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4749814005479305776, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
+  m_PrefabInstance: {fileID: 3816659941652851373}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &618955286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618955284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b067b3bdbdeb994992f87af345dcd8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HeartPrefab: {fileID: 124109952125720009, guid: 5a25915a234c1ee44924893197277909, type: 3}
+  HeartSprite:
+  - {fileID: 21300000, guid: 8cbe7f4cedc9f654fb9818f4f75ff99b, type: 3}
+  - {fileID: 21300000, guid: 320c2c5f427b74144b8f000c96754b6f, type: 3}
 --- !u!1001 &619191480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35687,7 +35708,7 @@ Transform:
   - {fileID: 433764085}
   - {fileID: 616703365}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1886171310
 PrefabInstance:
@@ -40692,6 +40713,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 436350409, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: MaxHealth
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6667020932940612796, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       propertyPath: cs
       value: 
@@ -41038,17 +41063,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1169279102, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1770001049, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 701570534340242838, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
-      propertyPath: m_Color.a
-      value: 0
+    - target: {fileID: 1081325214, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+      propertyPath: pauseMenuUI
+      value: 
+      objectReference: {fileID: 998389377870434537}
+    - target: {fileID: 43289789787263788, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 998389375878238251, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
       propertyPath: m_Pivot.x
@@ -41060,7 +41081,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 998389375878238251, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 998389375878238251, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
       propertyPath: m_AnchorMax.x
@@ -41138,13 +41159,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Essential Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 8640217224079912951, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 5214454480790208494, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1842371120, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+    - target: {fileID: 6542252742722965247, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+--- !u!1 &998389377870434537 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8547556930285738742, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+  m_PrefabInstance: {fileID: 998389377870434536}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3816659941652851373
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41159,6 +41188,30 @@ PrefabInstance:
     - target: {fileID: 266408325, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 266408325, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 996636001, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
+      propertyPath: m_Value
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 321404893619566880, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 572.1807
+      objectReference: {fileID: 0}
+    - target: {fileID: 321404893619566880, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -286.08533
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740431496830611371, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 363.1404
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740431496830611371, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -89.65919
       objectReference: {fileID: 0}
     - target: {fileID: 3816659941227178073, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
       propertyPath: m_Pivot.x
@@ -41247,6 +41300,14 @@ PrefabInstance:
     - target: {fileID: 3816659941227178077, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
       propertyPath: m_Name
       value: Combat Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749814005479305776, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
+      propertyPath: m_Name
+      value: Heart Container
+      objectReference: {fileID: 0}
+    - target: {fileID: 6578495448238889661, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 173
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35a7b40efcba4784cac71fb522a8a64d, type: 3}

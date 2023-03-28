@@ -36,6 +36,7 @@ public class PlayerMainScript : MonoBehaviour
 
         EssentialCanvas = GameObject.Find("Essential Canvas");
         PauseMenuScript = EssentialCanvas.GetComponent<PauseMenu>();
+        PauseMenuScript.MainScript = this;
 
         if(int_CurrentScene != 2) CombatCanvas = GameObject.Find("Combat Canvas"); 
 

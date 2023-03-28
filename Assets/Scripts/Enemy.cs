@@ -9,12 +9,6 @@ public class Enemy : MonoBehaviour
         [Tooltip ("The amount of Health it starts with. This number does not change during runtime")]
         public int MaxHealth;
 
-        [Tooltip ("The amount of damage it will deal to the player on each turn")]
-        public int Attack;
-
-        [Tooltip ("The amount of damage reduced from the player")]
-        public int Defense;
-
         [Tooltip ("How difficult will the questions be")]
         public int Tier;
     
@@ -25,36 +19,25 @@ public class Enemy : MonoBehaviour
         [Tooltip ("The amount of Money rewarded to the player")]
         public int OnDeath_Money;
 
-    private Slider EnemyHPSlider;
     private PlayerMainScript MainScript;
+    private HeartContainerScript HeartContainer;
 
     [HideInInspector] public bool AboutToDie = false;
 
     public void InitializeEnemy(PlayerMainScript PMS)
     {
         MainScript = PMS;
-        EnemyHPSlider = MainScript.CombatCanvas.transform.GetChild(0).GetChild(1).GetComponent<Slider>();
+        HeartContainer = MainScript.CombatCanvas.transform.Find("Enemy").transform.Find("Heart Container").GetComponent<HeartContainerScript>();
     }
 
     public void PrepareForCombat()
     {
-        EnemyHPSlider.maxValue = MaxHealth;
-        EnemyHPSlider.value = MaxHealth;
+        HeartContainer.SpawnHearts(MaxHealth, false);
     }
 
-    public void TakeDamage(int Damage)
+    public void TakeDamage()
     {
-        int resultingDamage = Damage - Defense;
-            /* Sleep here for animation purposes? */
-        if (resultingDamage > 0)
-        {
-            EnemyHPSlider.value -= resultingDamage;
-            if (EnemyHPSlider.value <= 0) AboutToDie = true;
-        }
-        else 
-        {
-            // Possibly make a "Blocked" thing appear?
-        }
+        AboutToDie = HeartContainer.ReduceHealth();
     }
 
     public void OnDeath()
