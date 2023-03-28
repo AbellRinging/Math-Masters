@@ -41063,13 +41063,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1081325214, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
-      propertyPath: pauseMenuUI
-      value: 
-      objectReference: {fileID: 998389377870434537}
     - target: {fileID: 43289789787263788, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 998389377870434537}
+    - target: {fileID: 43289789787263788, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToSamosTown
       objectReference: {fileID: 0}
     - target: {fileID: 998389375878238251, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
       propertyPath: m_Pivot.x
@@ -41159,21 +41159,63 @@ PrefabInstance:
       propertyPath: m_Name
       value: Essential Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3531686136385661553, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 998389377870434537}
+    - target: {fileID: 3531686136385661553, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AboutMe
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749949715309898906, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 998389377870434537}
+    - target: {fileID: 4749949715309898906, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Restart
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214454480790208494, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5214454480790208494, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 998389377870434537}
+    - target: {fileID: 5214454480790208494, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Resume
       objectReference: {fileID: 0}
     - target: {fileID: 6542252742722965247, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6607948512487036647, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 998389377870434537}
+    - target: {fileID: 6607948512487036647, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Customize
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547556930285738742, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
---- !u!1 &998389377870434537 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8547556930285738742, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
+--- !u!114 &998389377870434537 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1081325214, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
   m_PrefabInstance: {fileID: 998389377870434536}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374e37d215fbc3a4b823035df20a3290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3816659941652851373
 PrefabInstance:
   m_ObjectHideFlags: 0
