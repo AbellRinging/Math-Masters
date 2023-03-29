@@ -83,7 +83,7 @@ public class PlayFabManager : MonoBehaviour
 
     IEnumerator OnLoginSuccessSleep(){
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(1);
     }
 
     void OnGetPlayerProfileSuccess(GetPlayerProfileResult result){
