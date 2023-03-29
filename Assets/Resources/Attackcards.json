@@ -1,193 +1,193 @@
 [
 	{
         "Type": "AttackCard",
-        "Name": "Test0",
+        "Name": "0",
         "ImageName": "0"
     },
     
     {
         "Type": "AttackCard",
-        "Name": "Test1",
+        "Name": "1",
         "ImageName": "1"
     },
     
     {
         "Type": "AttackCard",
-        "Name": "Test2",
+        "Name": "2",
         "ImageName": "2"
     },
     
     {
         "Type": "AttackCard",
-        "Name": "Test3",
+        "Name": "3",
         "ImageName": "3"
     },
 
     {
         "Type": "AttackCard",
-        "Name": "Test4",
+        "Name": "4",
         "ImageName": "4"
     },
 
     {
         "Type": "AttackCard",
-        "Name": "Test5",
+        "Name": "5",
         "ImageName": "5"
     },
 
     {
         "Type": "AttackCard",
-        "Name": "Test6",
+        "Name": "6",
         "ImageName": "6"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test7",
+        "Name": "7",
         "ImageName": "7"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test8",
+        "Name": "8",
         "ImageName": "8"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test9",
+        "Name": "9",
         "ImageName": "9"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test10",
+        "Name": "10",
         "ImageName": "10"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test12",
+        "Name": "12",
         "ImageName": "12"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test14",
+        "Name": "14",
         "ImageName": "14"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test15",
+        "Name": "15",
         "ImageName": "15"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test16",
+        "Name": "16",
         "ImageName": "16"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test18",
+        "Name": "18",
         "ImageName": "18"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test20",
+        "Name": "20",
         "ImageName": "20"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test21",
+        "Name": "21",
         "ImageName": "21"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test24",
+        "Name": "24",
         "ImageName": "24"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test28",
+        "Name": "28",
         "ImageName": "28"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test30",
+        "Name": "30",
         "ImageName": "30"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test32",
+        "Name": "32",
         "ImageName": "32"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test35",
+        "Name": "35",
         "ImageName": "35"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test36",
+        "Name": "36",
         "ImageName": "36"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test40",
+        "Name": "40",
         "ImageName": "40"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test42",
+        "Name": "42",
         "ImageName": "42"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test48",
+        "Name": "48",
         "ImageName": "48"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test50",
+        "Name": "50",
         "ImageName": "50"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test53",
+        "Name": "53",
         "ImageName": "53"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test54",
+        "Name": "54",
         "ImageName": "54"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test60",
+        "Name": "60",
         "ImageName": "60"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test80",
+        "Name": "80",
         "ImageName": "80"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test100",
+        "Name": "100",
         "ImageName": "100"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test160",
+        "Name": "160",
         "ImageName": "160"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test180",
+        "Name": "180",
         "ImageName": "180"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test210",
+        "Name": "210",
         "ImageName": "210"
     },
     {
         "Type": "AttackCard",
-        "Name": "Test300",
+        "Name": "300",
         "ImageName": "300"
     }
 ]
