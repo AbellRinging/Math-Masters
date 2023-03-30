@@ -9,6 +9,7 @@ public class PlayerCombat : Parent_PlayerScript
         public float Float_StoppingDistance;    
     [HideInInspector] public List<Enemy> ListOfEnemies;
     [HideInInspector] public Enemy CurrentEnemy;
+    [HideInInspector] public int EnemyIndexInList = 0;
     [HideInInspector] public bool Bool_BattleIsHappening = false;
     
 
@@ -32,12 +33,11 @@ public class PlayerCombat : Parent_PlayerScript
     /// </summary>
     public void BeginFight()
     {
+        CurrentEnemy.GetComponent<Enemy>().TriggerEnemyAnimation("BattleReady");
         MainScript.CombatCanvas.SetActive(true);
         Bool_BattleIsHappening = true;
         NewTurn();
     }
-
-
 
 
 
@@ -102,7 +102,7 @@ public class PlayerCombat : Parent_PlayerScript
             {
                 if(MainScript.HealthScript.TakeDamage())
                 {
-                    // Open Pause Menu
+                    MainScript.PauseMenuScript.Pause(true);
                 }
             }
                 
@@ -129,19 +129,12 @@ public class PlayerCombat : Parent_PlayerScript
     #endregion
 
 
-
-
-
-
-
-
-
     private void SetUpCombat()
     {
         MainScript.CombatScript.Bool_BattleIsHappening = false;
         MainScript.CombatCanvas.SetActive(false);
 
-        CurrentEnemy = ListOfEnemies[0];
+        CurrentEnemy = ListOfEnemies[EnemyIndexInList];
         CurrentEnemy.PrepareForCombat();
         MainScript.MovementScript.ForceMoveToLocation(new Vector3(CurrentEnemy.transform.position.x, transform.position.y, CurrentEnemy.transform.position.z + Float_StoppingDistance));
     }
@@ -151,9 +144,9 @@ public class PlayerCombat : Parent_PlayerScript
     /// </summary>
     public void NextEnemyFight()
     {
-        ListOfEnemies.RemoveAt(0);
+        EnemyIndexInList++;
 
-        if (ListOfEnemies.Count > 0)
+        if (EnemyIndexInList <= ListOfEnemies.Count)
         {
             SetUpCombat();
         }

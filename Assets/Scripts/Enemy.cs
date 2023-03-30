@@ -22,10 +22,14 @@ public class Enemy : MonoBehaviour
     private PlayerMainScript MainScript;
     private HeartContainerScript HeartContainer;
 
+    private Animator animator;
+
     [HideInInspector] public bool AboutToDie = false;
 
     public void InitializeEnemy(PlayerMainScript PMS)
     {
+        animator = GetComponent<Animator>();
+
         MainScript = PMS;
         HeartContainer = MainScript.CombatCanvas.transform.Find("Enemy").transform.Find("Heart Container").GetComponent<HeartContainerScript>();
     }
@@ -38,6 +42,8 @@ public class Enemy : MonoBehaviour
     public void TakeDamage()
     {
         AboutToDie = HeartContainer.ReduceHealth();
+        TriggerEnemyAnimation("Hit");
+        animator.SetBool("Die", AboutToDie);
     }
 
     public void OnDeath()
@@ -49,7 +55,25 @@ public class Enemy : MonoBehaviour
         MainScript.CombatScript.NextEnemyFight();
 
         /* Instead of Destroy, just push the creature aside and use the death animation */
-        Destroy(transform.gameObject);
+            Destroy(transform.gameObject);
         /* ==== */
+    }
+
+    public void TriggerEnemyAnimation(string AnimationName)
+    {
+        animator.SetTrigger(AnimationName);
+    }
+
+    public void AnimationEnded_ContinueTheGame(int option)
+    {
+        switch(option)
+        {
+            case(0):
+
+                break;
+            case(1):
+
+                break;
+        }
     }
 }

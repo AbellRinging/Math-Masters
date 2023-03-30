@@ -12,7 +12,8 @@ public class PlayerAnimation : Parent_PlayerScript
         animator = GetComponent<Animator>();
     }
 
-    public void ToggleAnimation(string AnimationName, bool boolean){
+    public void ToggleAnimation(string AnimationName, bool boolean)
+    {
         animator.SetBool(AnimationName, boolean);
     }
 }

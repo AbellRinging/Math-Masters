@@ -36,9 +36,9 @@ public class PlayerMainScript : MonoBehaviour
 
         EssentialCanvas = GameObject.Find("Essential Canvas");
         PauseMenuScript = EssentialCanvas.GetComponent<PauseMenu>();
-        PauseMenuScript.MainScript = this;
+        PauseMenuScript.SpecifyPauseMenu(this, int_CurrentScene);
 
-        if(int_CurrentScene != 2) CombatCanvas = GameObject.Find("Combat Canvas"); 
+        if(int_CurrentScene != 1) CombatCanvas = GameObject.Find("Combat Canvas"); 
 
         #region Script Initializing
             MovementScript = GetComponent<PlayerMovement>();
@@ -54,10 +54,10 @@ public class PlayerMainScript : MonoBehaviour
             HealthScript.Run_At_Start();
             AnimationScript.Run_At_Start();
             CameraScript.Run_At_Start();
-            if(int_CurrentScene != 2) CombatScript.Run_At_Start();
+            if(int_CurrentScene != 1) CombatScript.Run_At_Start();
             MoneyScript.Run_At_Start();
-            if(int_CurrentScene != 2) DeckScript.Run_At_Start();
-            if(int_CurrentScene != 2) QuestionScript.Run_At_Start();
+            if(int_CurrentScene != 1) DeckScript.Run_At_Start();
+            if(int_CurrentScene != 1) QuestionScript.Run_At_Start();
         #endregion
     }
 
@@ -66,7 +66,7 @@ public class PlayerMainScript : MonoBehaviour
         if(!PauseMenuScript.GameIsPaused)
         {
             // ## Only usable in Samos Town (Scene 2); WASD/Mouse-Click Movement and character direction Component. 
-            if(int_CurrentScene == 2) MovementScript.Move();
+            if(int_CurrentScene == 1) MovementScript.Move();
 
             // ## Runs for anywhere other than Samos Town
             else
