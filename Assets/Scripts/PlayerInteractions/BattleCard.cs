@@ -129,16 +129,13 @@ public class BattleCard : MonoBehaviour
 
         switch(card.SpellType){
             case("Suspend"):
-                Text_Description.text = "Neste turno o inimigo fica impossibilitado de atacar";
-                break;
-            case("ExtraDMG"):
-                Text_Description.text = "Durante um turno, tira mais 20% de dano no próximo ataque";
+                Text_Description.text = "Neste turno o inimigo fica impossibilitado de atacar se errares";
                 break;
             case("Heal"):
-                Text_Description.text = "Cura a personagem em 10 pontos de vida";
+                Text_Description.text = "Cura-te em 1 ponto de vida";
                 break;
             case("DoubleAttack"):
-                Text_Description.text = "Durante um turno, ataca duas vezes";
+                Text_Description.text = "Durante este turno, causa o dobro do dano se acertares";
                 break;
             default:
                 Debug.LogError("Type of Spell typed incorrectly. Received: " + card.SpellType);

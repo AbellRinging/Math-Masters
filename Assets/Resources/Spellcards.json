@@ -1,15 +1,22 @@
 [
 	{
         "Type": "SpellCard",
-        "Name": "Suspend",
+        "Name": "Suspender Inimigo",
         "ImageName": "1",
         "SpellType": "Suspend"
     },
 
     {
         "Type": "SpellCard",
-        "Name": "ExtraDMG",
+        "Name": "Curar",
         "ImageName": "2",
-        "SpellType": "ExtraDMG"
+        "SpellType": "Heal"
+    },
+
+    {
+        "Type": "SpellCard",
+        "Name": "Ataque duplo",
+        "ImageName": "3",
+        "SpellType": "DoubleAttack"
     }
 ]

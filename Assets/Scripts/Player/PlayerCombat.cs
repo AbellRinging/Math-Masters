@@ -64,22 +64,17 @@ public class PlayerCombat : Parent_PlayerScript
             {
                 switch(spell.SpellType){
                     case("Suspend"):
-                            //"Neste turno o inimigo fica impossibilitado de atacar";
-                        /* To be implemented*/
-
-                        break;
-                    case("ExtraDMG"):
-                            //"Durante um turno, tira mais 20% de dano no próximo ataque";
+                            //"Neste turno o inimigo fica impossibilitado de atacar se errares";
                         /* To be implemented*/
 
                         break;
                     case("Heal"):
-                            //"Cura a personagem em 10 pontos de vida";
+                            //"Cura-te em 1 ponto de vida";
                         /* To be implemented*/
 
                         break;
                     case("DoubleAttack"):
-                            //"Durante um turno, ataca duas vezes";
+                            //"Durante este turno, causa o dobro do dano se acertares";
                         /* To be implemented*/
 
                         break;
@@ -146,7 +141,7 @@ public class PlayerCombat : Parent_PlayerScript
     {
         EnemyIndexInList++;
 
-        if (EnemyIndexInList <= ListOfEnemies.Count)
+        if (EnemyIndexInList < ListOfEnemies.Count)
         {
             SetUpCombat();
         }
@@ -155,11 +150,18 @@ public class PlayerCombat : Parent_PlayerScript
 
     private void LevelComplete()
     {
+
+        MainScript.PauseMenuScript.EndOfLevelMenu();
+
         /*
             SAVE PROGRESS IN DATABASE
         */
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(ManuallyInsertedDelay());
     }
-
+        private IEnumerator ManuallyInsertedDelay() //  Put the content in the method above?
+        {
+            yield return new WaitForSeconds(1);
+            MainScript.PauseMenuScript.AllowPlayerToContinueInEndOfLevelMenu();
+        }
 }

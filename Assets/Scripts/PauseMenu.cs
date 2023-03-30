@@ -6,15 +6,20 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
 
     
+    public GameObject FinishedLevelText;
+
     public GameObject ResumeButton;
     public GameObject ReturnButton;
     public GameObject RestartButton;
+    public GameObject NextLevelButton;
     public GameObject CustomizeButton;
     public GameObject AboutMeButton;
+    public GameObject QuitButton;
 
     [HideInInspector] public bool GameIsPaused = false;
 
     private bool PlayerDied = false;
+    private bool EndOfLevel = false;
     private PlayerMainScript MainScript;
     private int CurrentScene;
     public void SpecifyPauseMenu(PlayerMainScript Main, int currentScene)
@@ -33,7 +38,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if(!PlayerDied && Input.GetKeyDown(KeyCode.Escape))
+        if(!PlayerDied && !EndOfLevel && Input.GetKeyDown(KeyCode.Escape))
         {
             if(GameIsPaused)
             {
@@ -67,6 +72,7 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = true;
     }
 
+
     public void GoToSamosTown()
     {
         Time.timeScale = 1f;
@@ -77,6 +83,11 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(CurrentScene);
+    }
+
+    public void GoToNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void Customize()
@@ -93,4 +104,23 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Quitting game");
     }
+
+    public void EndOfLevelMenu()
+    {
+        pauseMenuUI.SetActive(true);
+        
+        EndOfLevel = true;
+        FinishedLevelText.SetActive(true);
+        ResumeButton.SetActive(false);
+        QuitButton.SetActive(false);
+
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+
+    }
+        public void AllowPlayerToContinueInEndOfLevelMenu()
+        {
+            NextLevelButton.SetActive(true);
+            ReturnButton.SetActive(true);
+        }
 }

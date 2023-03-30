@@ -7,6 +7,6 @@ public class MenuToVillage : MonoBehaviour
 {
     public void LoadScene()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("SamosTown");
     }
 }
