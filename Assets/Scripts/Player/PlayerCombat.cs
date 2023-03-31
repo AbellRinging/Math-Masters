@@ -11,9 +11,8 @@ public class PlayerCombat : Parent_PlayerScript
     [HideInInspector] public Enemy CurrentEnemy;
     [HideInInspector] public int EnemyIndexInList = 0;
     [HideInInspector] public bool Bool_BattleIsHappening = false;
-    
-
-
+     
+    public GameObject EnemyProfile;
 
     protected override void Custom_Start()
     {
@@ -26,6 +25,7 @@ public class PlayerCombat : Parent_PlayerScript
         }
 
         SetUpCombat();
+        SetUpEnemyProfile();
     }
 
     /// <summary>
@@ -131,6 +131,7 @@ public class PlayerCombat : Parent_PlayerScript
         if (EnemyIndexInList < ListOfEnemies.Count)
         {
             SetUpCombat();
+            SetUpEnemyProfile();
         }
         else LevelComplete();
     }
@@ -149,5 +150,27 @@ public class PlayerCombat : Parent_PlayerScript
     {
         yield return new WaitForSeconds(1);
         MainScript.PauseMenuScript.AllowPlayerToContinueInEndOfLevelMenu();
+    }
+
+    private void SetUpEnemyProfile()
+    {
+        if(EnemyProfile.transform.childCount != 2)
+        {
+            Destroy(EnemyProfile.transform.GetChild(2));
+        }
+
+        GameObject DummyEnemy = Instantiate(CurrentEnemy.gameObject, EnemyProfile.transform);
+        DummyEnemy.transform.localPosition = new Vector3(0, 0, -0.3f);
+        DummyEnemy.transform.Rotate(0, 40, 0, Space.Self);
+
+        DummyEnemy.layer = 6;
+        var children = DummyEnemy.GetComponentsInChildren<Transform>(includeInactive: true);
+        foreach (var child in children)
+        {
+            child.gameObject.layer = 6;
+        }
+
+        //DummyEnemy.GetComponent<Enemy>().TriggerEnemyAnimation("BattleReady");
+        Destroy(DummyEnemy.GetComponent<Enemy>());
     }
 }
