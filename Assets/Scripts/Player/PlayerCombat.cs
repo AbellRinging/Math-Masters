@@ -156,7 +156,7 @@ public class PlayerCombat : Parent_PlayerScript
     {
         if(EnemyProfile.transform.childCount != 2)
         {
-            Destroy(EnemyProfile.transform.GetChild(2));
+            Destroy(EnemyProfile.transform.GetChild(2).gameObject);
         }
 
         GameObject DummyEnemy = Instantiate(CurrentEnemy.gameObject, EnemyProfile.transform);
