@@ -42786,14 +42786,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Essential Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 2051832075050776359, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -1.0788574
-      objectReference: {fileID: 0}
-    - target: {fileID: 2051832075050776359, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 322.91003
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d27a25bbeeccf5468466cd27e74dd27, type: 3}
 --- !u!1001 &3816659941652851373
@@ -43012,22 +43004,6 @@ PrefabInstance:
     - target: {fileID: 7101662601699224084, guid: 97ccba7500b67584686b467c9f00da5e, type: 3}
       propertyPath: m_Name
       value: Enemy Animated Profile
-      objectReference: {fileID: 0}
-    - target: {fileID: 7101662602537608269, guid: 97ccba7500b67584686b467c9f00da5e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7101662602537608269, guid: 97ccba7500b67584686b467c9f00da5e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7101662602537608270, guid: 97ccba7500b67584686b467c9f00da5e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7551053199291805090, guid: 97ccba7500b67584686b467c9f00da5e, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97ccba7500b67584686b467c9f00da5e, type: 3}
