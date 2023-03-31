@@ -39,24 +39,23 @@ public class Enemy : MonoBehaviour
         HeartContainer.SpawnHearts(MaxHealth, false);
     }
 
+    public void EnemyAttack()
+    {
+        TriggerEnemyAnimation("Attack");
+    }
+
     public void TakeDamage()
     {
         AboutToDie = HeartContainer.ReduceHealth();
-        TriggerEnemyAnimation("Hit");
         animator.SetBool("Die", AboutToDie);
+        TriggerEnemyAnimation("Hit");
     }
 
     public void OnDeath()
     {
         // SOME STUFF IS NEEDED FIRST (EXP)
 
-        MainScript.MoneyScript.Set_Money(OnDeath_Money);
-
-        MainScript.CombatScript.NextEnemyFight();
-
-        /* Instead of Destroy, just push the creature aside and use the death animation */
-            Destroy(transform.gameObject);
-        /* ==== */
+        MainScript.MoneyScript.Set_Money(OnDeath_Money);        
     }
 
     public void TriggerEnemyAnimation(string AnimationName)
@@ -68,11 +67,19 @@ public class Enemy : MonoBehaviour
     {
         switch(option)
         {
-            case(0):
-
+            case(1): // Hit
+                if(AboutToDie)
+                {
+                    return;
+                }
+                MainScript.CombatScript.NewTurn();
                 break;
-            case(1):
-
+            case(2): // Die
+                OnDeath();
+                MainScript.CombatScript.NextEnemyFight();
+                break;
+            case(3): // Attack
+                MainScript.CombatScript.NewTurn();
                 break;
         }
     }

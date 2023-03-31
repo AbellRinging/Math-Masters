@@ -89,37 +89,24 @@ public class PlayerCombat : Parent_PlayerScript
         /// </summary>
         public void EndTurn(BattleCard.AttackCard attack)
         {
-            if(MainScript.QuestionScript.AttemptAtAnswer(attack))
+
+            if(!MainScript.QuestionScript.AttemptAtAnswer(attack))
             {
-                CurrentEnemy.TakeDamage();
+                CurrentEnemy.EnemyAttack();
+
+                if(MainScript.HealthScript.TakeDamage())
+                {
+                    MainScript.PauseMenuScript.Pause(true); // Use this line in AnimationEnded type of method, for after the character falls backwards?
+                    return;
+                }
             }
             else
             {
-                if(MainScript.HealthScript.TakeDamage())
-                {
-                    MainScript.PauseMenuScript.Pause(true);
-                }
+                CurrentEnemy.TakeDamage();
             }
-                
-
+            
             ASpellWasCast = false;
             MainScript.DeckScript.Discard_Hand();
-
-            StartCoroutine(Coroutine_EndTurnWait());
-        }
-        private IEnumerator Coroutine_EndTurnWait()
-        {
-            for(;;)
-            {
-                if (!MainScript.DeckScript.Bool_Coroutine_Discard_Hand)
-                {
-                    if(CurrentEnemy.AboutToDie) CurrentEnemy.OnDeath();
-                    else NewTurn();
-
-                    yield break;
-                }
-                else yield return new WaitForSeconds(.1f);
-            }
         }
     #endregion
 
@@ -150,7 +137,6 @@ public class PlayerCombat : Parent_PlayerScript
 
     private void LevelComplete()
     {
-
         MainScript.PauseMenuScript.EndOfLevelMenu();
 
         /*
@@ -159,9 +145,9 @@ public class PlayerCombat : Parent_PlayerScript
 
         StartCoroutine(ManuallyInsertedDelay());
     }
-        private IEnumerator ManuallyInsertedDelay() //  Put the content in the method above?
-        {
-            yield return new WaitForSeconds(1);
-            MainScript.PauseMenuScript.AllowPlayerToContinueInEndOfLevelMenu();
-        }
+    private IEnumerator ManuallyInsertedDelay() //  Put the content in the method above?
+    {
+        yield return new WaitForSeconds(1);
+        MainScript.PauseMenuScript.AllowPlayerToContinueInEndOfLevelMenu();
+    }
 }
