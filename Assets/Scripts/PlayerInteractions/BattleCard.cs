@@ -127,6 +127,7 @@ public class BattleCard : MonoBehaviour
 
         Text_Type.text = "Feitiço";
 
+        //Text_Description.fontSize = 15;
         switch(card.SpellType){
             case("Suspend"):
                 Text_Description.text = "Neste turno o inimigo fica impossibilitado de atacar se errares";
