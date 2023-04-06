@@ -52,7 +52,7 @@ public class PlayerCombat : Parent_PlayerScript
         /// </summary>
         public void NewTurn()
         {
-            int answerToQuestion = MainScript.QuestionScript.Generate_NewQuestion(CurrentEnemy.Tier);
+            int answerToQuestion = MainScript.QuestionScript.Generate_NewQuestion(CurrentEnemy);
 
             MainScript.DeckScript.Generate_NewHand(answerToQuestion);
         }

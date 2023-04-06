@@ -31,17 +31,18 @@ public class PlayerQuestion : Parent_PlayerScript
             }
             Dic_QuestionsByTier[question.Tier].Add(question);
         }
-                /* DEV */ Debug.Log("Number of questions initialized: " + Array_Questions.GetLength(0));
+                // /* DEV */ Debug.Log("Number of questions initialized: " + Array_Questions.GetLength(0));
     }
 
     /// <summary>
     ///     PUBLIC: Generates a question, and returns the answer to said question
     /// </summary>
-    public int Generate_NewQuestion(int Tier)
+    public int Generate_NewQuestion(Enemy CurrentEnemy)
     {
         int answerToQuestion = 0;
-        int randomInt = Random.Range(0, Dic_QuestionsByTier[Tier].Count);
-        QuestionPanel.Question question = Dic_QuestionsByTier[Tier][randomInt];
+        int pickATier = Random.Range(CurrentEnemy.MinimumTier, CurrentEnemy.MaximumTier + 1);
+        int randomInt = Random.Range(0, Dic_QuestionsByTier[pickATier].Count);
+        QuestionPanel.Question question = Dic_QuestionsByTier[pickATier][randomInt];
 
         int calculatedResult = Calculate_Result(question);
 
@@ -64,7 +65,7 @@ public class PlayerQuestion : Parent_PlayerScript
         }
 
         QuestionScript.Create_Question(question, FieldToEmpty, calculatedResult);
-                /* DEV */ Debug.Log("Answer to Question is " + answerToQuestion);
+                // /* DEV */ Debug.Log("Answer to Question is " + answerToQuestion);
         return answerToQuestion;
     }
 

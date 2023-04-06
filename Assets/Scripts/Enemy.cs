@@ -8,9 +8,8 @@ public class Enemy : MonoBehaviour
     [Header ("Enemy Stats")]
         [Tooltip ("The amount of Health it starts with. This number does not change during runtime")]
         public int MaxHealth;
-
-        [Tooltip ("How difficult will the questions be")]
-        public int Tier;
+        public int MinimumTier;
+        public int MaximumTier;
     
     [Header ("Rewards upon Death")]
         [Tooltip ("The amount of EXP rewarded to the player")]
