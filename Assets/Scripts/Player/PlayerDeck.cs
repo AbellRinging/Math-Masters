@@ -4,6 +4,8 @@ using UnityEngine;
 using Newtonsoft.Json;
 using UnityEngine.UI;
 
+using System.Linq;
+
 public class PlayerDeck : Parent_PlayerScript
 {
     /*
@@ -43,6 +45,7 @@ public class PlayerDeck : Parent_PlayerScript
     protected override void Custom_Start()
     {
         Array_Hand = new GameObject[Int_HandSize];
+        CardImageNamesInHand = new List<string>();
 
         Get_AllCardsFromJSONs();
     }
@@ -99,7 +102,8 @@ public class PlayerDeck : Parent_PlayerScript
             MainScript.Bool_InterruptableCoroutineIsHappening = true;
             MainScript.InterruptableCoroutine = StartCoroutine(Coroutine_Generate_NewHand(answerToQuestion, cardCoordinates, randomInt));
         }
-        private IEnumerator Coroutine_Generate_NewHand(int answerToQuestion, Vector3[] cardCoordinates, int randomInt){
+        private IEnumerator Coroutine_Generate_NewHand(int answerToQuestion, Vector3[] cardCoordinates, int randomInt)
+        {
             bool SpellCardDrawn = false;
             for(int i = 0; i < Int_HandSize; ++i)
             {
@@ -113,11 +117,12 @@ public class PlayerDeck : Parent_PlayerScript
                         int randomInt2 = Random.Range(0, Array_SpellCards.GetLength(0));
                         Array_Hand[i] = Generate_CardPrefab(cardCoordinates[i], Array_SpellCards[randomInt2], Dic_SpellCardSprites[Array_SpellCards[randomInt2].ImageName]);
                         SpellCardDrawn = !SpellCardDrawn;
-                    }    
+                    }
                     else
                     {
-                        int randomInt2 = Random.Range(0, Array_AttackCards.GetLength(0));
-                        Array_Hand[i] = Generate_CardPrefab(cardCoordinates[i], Array_AttackCards[randomInt2], Dic_AttackCardSprites[Array_AttackCards[randomInt2].ImageName]);
+                        //int randomInt2 = Random.Range(0, Array_AttackCards.GetLength(0));
+                        string controlledRandomizedCardName = RandomizeCardProperly(answerToQuestion);
+                        Array_Hand[i] = Generate_CardPrefab(cardCoordinates[i], Dic_AttackCard[controlledRandomizedCardName], Dic_AttackCardSprites[Dic_AttackCard[controlledRandomizedCardName].ImageName]);
                     }
                 }
                 else
@@ -148,6 +153,31 @@ public class PlayerDeck : Parent_PlayerScript
             return cardCoordinates;
         }
 
+        private List<string> CardImageNamesInHand;
+        private string RandomizeCardProperly(int answer)
+        {
+            string tempImageName;
+            bool Proceed = true;
+
+            for(;;)
+            {
+                tempImageName = Array_AttackCards[Random.Range(0, Array_AttackCards.Length)].ImageName;
+
+                if(tempImageName == answer.ToString())     Proceed = false;
+
+                foreach(string imagename in CardImageNamesInHand)
+                {
+                    if(imagename == tempImageName)    Proceed = false;
+                }
+
+                if(Proceed)     break;
+                Proceed = true;
+            }
+
+            CardImageNamesInHand.Add(tempImageName);
+            return tempImageName;
+        }
+
     #endregion
 
     #region Discard Hand
@@ -158,6 +188,7 @@ public class PlayerDeck : Parent_PlayerScript
         public void Discard_Hand()
         {
             MainScript.Bool_InterruptableCoroutineIsHappening = true;
+            CardImageNamesInHand.Clear();
             MainScript.InterruptableCoroutine = StartCoroutine(Coroutine_Discard_Hand());
         }
         private IEnumerator Coroutine_Discard_Hand()
