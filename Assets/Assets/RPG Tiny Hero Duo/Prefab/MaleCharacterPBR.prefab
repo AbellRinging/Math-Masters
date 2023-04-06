@@ -2280,7 +2280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b33bd29f587a14e9acbdf2b7f2aaa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingMaxHealth: 100
+  MaxHealth: 3
 --- !u!114 &265341991046214006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2324,7 +2324,10 @@ MonoBehaviour:
   Float_StoppingDistance: 7
   ListOfEnemies: []
   CurrentEnemy: {fileID: 0}
+  EnemyIndexInList: 0
   Bool_BattleIsHappening: 0
+  EnemyProfile: {fileID: 0}
+  AmountOfSpellsThePlayerCanUse: 5
 --- !u!114 &6832006452628135382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2353,8 +2356,8 @@ MonoBehaviour:
   Array_Hand: []
   Int_HandSize: 5
   PercentageToDrawSpell: 0.5
-  DrawingSpeed: 0.2
-  DiscardingSpeed: 0.2
+  DrawingSpeed: 0.1
+  DiscardingSpeed: 0.1
   Bool_Coroutine_Discard_Hand: 0
   Toggle: 0
   RT_DeckMat: {fileID: 0}

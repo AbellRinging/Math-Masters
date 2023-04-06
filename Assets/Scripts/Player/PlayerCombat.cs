@@ -13,6 +13,7 @@ public class PlayerCombat : Parent_PlayerScript
     [HideInInspector] public bool Bool_BattleIsHappening = false;
      
     public GameObject EnemyProfile;
+    private SpellCounter spellCounter;
 
     protected override void Custom_Start()
     {
@@ -26,6 +27,9 @@ public class PlayerCombat : Parent_PlayerScript
 
         SetUpCombat();
         SetUpEnemyProfile();
+
+        spellCounter = MainScript.CombatCanvas.transform.Find("Number Of Spells").GetComponent<SpellCounter>();
+        spellCounter.UpdateSpellCounter(AmountOfSpellsThePlayerCanUse);
     }
 
     /// <summary>
@@ -42,7 +46,6 @@ public class PlayerCombat : Parent_PlayerScript
 
 
     #region Turn phases
-        private bool ASpellWasCast = false;     // Used to limit the number of castable spells per turn by one.
 
         /// <summary>
         ///     To start each turn
@@ -54,33 +57,38 @@ public class PlayerCombat : Parent_PlayerScript
             MainScript.DeckScript.Generate_NewHand(answerToQuestion);
         }
 
-        
+        #region Spell related Variables
+            public int AmountOfSpellsThePlayerCanUse = 5;
+            private bool ASpellWasCast = false;     // Used to limit the number of castable spells per turn by one. Also helps with the incrementation (TO BE IMPLEMENTED)
+            private bool BlockAttack = false;
+            private bool PlayerAttacksTwice = false;
+        #endregion
         /// <summary>
         ///     Player picks a spell card. Changes how the battle will happen. Can only happen once per turn
         /// </summary>
         public void SpellCast(BattleCard.SpellCard spell)
         {
+            if(AmountOfSpellsThePlayerCanUse <= 0) return;
+
             if(!ASpellWasCast)
             {
                 switch(spell.SpellType){
-                    case("Suspend"):
-                            //"Neste turno o inimigo fica impossibilitado de atacar se errares";
-                        /* To be implemented*/
-
+                    case("Block"):
+                            //"Neste turno bloqueias o ataque se errares";
+                            BlockAttack = true;
                         break;
                     case("Heal"):
                             //"Cura-te em 1 ponto de vida";
-                        /* To be implemented*/
-
+                            MainScript.HealthScript.Heal(1);
                         break;
                     case("DoubleAttack"):
                             //"Durante este turno, causa o dobro do dano se acertares";
-                        /* To be implemented*/
-
+                            PlayerAttacksTwice = true;
                         break;
                 }
-
                 ASpellWasCast = true;
+                AmountOfSpellsThePlayerCanUse--;
+                spellCounter.UpdateSpellCounter(AmountOfSpellsThePlayerCanUse);
             }
         }
 
@@ -90,11 +98,13 @@ public class PlayerCombat : Parent_PlayerScript
         public void EndTurn(BattleCard.AttackCard attack)
         {
 
-            if(!MainScript.QuestionScript.AttemptAtAnswer(attack))
+            bool isCorrect = MainScript.QuestionScript.AttemptAtAnswer(attack);
+
+            if(!isCorrect)
             {
                 CurrentEnemy.EnemyAttack();
 
-                if(MainScript.HealthScript.TakeDamage())
+                if(!BlockAttack && MainScript.HealthScript.TakeDamage())
                 {
                     MainScript.PauseMenuScript.Pause(true); // Use this line in AnimationEnded type of method, for after the character falls backwards?
                     return;
@@ -102,10 +112,12 @@ public class PlayerCombat : Parent_PlayerScript
             }
             else
             {
-                CurrentEnemy.TakeDamage();
+                CurrentEnemy.TakeDamage(PlayerAttacksTwice);
             }
-            
+
             ASpellWasCast = false;
+            BlockAttack = false;
+            PlayerAttacksTwice = false;
             MainScript.DeckScript.Discard_Hand();
         }
     #endregion

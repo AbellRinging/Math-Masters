@@ -1,9 +1,9 @@
 [
 	{
         "Type": "SpellCard",
-        "Name": "Suspender Inimigo",
+        "Name": "Bloquear Ataque",
         "ImageName": "1",
-        "SpellType": "Suspend"
+        "SpellType": "Block"
     },
 
     {

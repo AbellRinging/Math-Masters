@@ -44,9 +44,11 @@ public class Enemy : MonoBehaviour
         TriggerEnemyAnimation("Attack");
     }
 
-    public void TakeDamage()
+    public void TakeDamage(bool doubleAttack)
     {
         AboutToDie = HeartContainer.ReduceHealth();
+        if(doubleAttack && !AboutToDie) AboutToDie = HeartContainer.ReduceHealth();
+        
         animator.SetBool("Die", AboutToDie);
         TriggerEnemyAnimation("Hit");
     }

@@ -129,8 +129,8 @@ public class BattleCard : MonoBehaviour
 
         //Text_Description.fontSize = 15;
         switch(card.SpellType){
-            case("Suspend"):
-                Text_Description.text = "Neste turno o inimigo fica impossibilitado de atacar se errares";
+            case("Block"):
+                Text_Description.text = "Neste turno bloqueias o ataque se errares";
                 break;
             case("Heal"):
                 Text_Description.text = "Cura-te em 1 ponto de vida";
