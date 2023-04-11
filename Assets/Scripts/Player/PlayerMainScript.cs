@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerMainScript : MonoBehaviour
 {
@@ -59,6 +60,8 @@ public class PlayerMainScript : MonoBehaviour
             if(int_CurrentScene != 1) DeckScript.Run_At_Start();
             if(int_CurrentScene != 1) QuestionScript.Run_At_Start();
         #endregion
+
+        UpdateNameInHUD();
     }
 
     private void Update()
@@ -89,6 +92,15 @@ public class PlayerMainScript : MonoBehaviour
         public void DB_SetMoney()
         {
 
+        }
+    #endregion
+
+    #region UI related
+        private TextMeshProUGUI DisplayPlayerName;
+        private void UpdateNameInHUD()
+        {
+            DisplayPlayerName = EssentialCanvas.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            DisplayPlayerName.text = StaticPlayerProfile.PlayerName;
         }
     #endregion
 }

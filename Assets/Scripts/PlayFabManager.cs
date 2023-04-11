@@ -10,9 +10,11 @@ using UnityEngine.SceneManagement;
 public class PlayFabManager : MonoBehaviour
 {
     [Header("UI")]
+
     public TextMeshProUGUI messageText;
     public TMP_InputField emailInput;
     public TMP_InputField passwordInput;
+    public TMP_InputField usernameInput;
 
     /*
         That Login() method in Start() was to login with computer ID and not with email + password;
@@ -34,7 +36,8 @@ public class PlayFabManager : MonoBehaviour
         {
             Email = emailInput.text,
             Password = passwordInput.text,
-            RequireBothUsernameAndEmail = false
+            Username = usernameInput.text,
+            RequireBothUsernameAndEmail = true
         };
 
         PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterSuccess, OnError);
@@ -44,7 +47,10 @@ public class PlayFabManager : MonoBehaviour
     {
         messageText.text = "Registered and logged in!";
         StaticPlayerProfile.PlayerFabId = result.PlayFabId;
-        UpdateDisplayName(StaticPlayerProfile.PlayerFabId);
+        StaticPlayerProfile.PlayerName = usernameInput.text;
+
+        UpdateDisplayName(StaticPlayerProfile.PlayerName);
+
         StartCoroutine(OnLoginSuccessSleep());
     }
 
@@ -88,12 +94,13 @@ public class PlayFabManager : MonoBehaviour
 
     void OnGetPlayerProfileSuccess(GetPlayerProfileResult result){
         StaticPlayerProfile.PlayerName = result.PlayerProfile.DisplayName;
+        Debug.Log("User that logged in: " + StaticPlayerProfile.PlayerName);
     }
 
 
-    void UpdateDisplayName(string PlayFabId) {
+    void UpdateDisplayName(string Name) {
         PlayFabClientAPI.UpdateUserTitleDisplayName( new UpdateUserTitleDisplayNameRequest {
-            DisplayName = PlayFabId
+            DisplayName = Name
         }, result => {
             Debug.Log("The player's display name is now: " + result.DisplayName);
         }, OnError);

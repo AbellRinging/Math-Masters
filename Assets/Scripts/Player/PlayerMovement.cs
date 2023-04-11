@@ -20,6 +20,9 @@ public class PlayerMovement : Parent_PlayerScript
         public GameObject GO_DisplayClickedLocation;
     #endregion
 
+    private AudioSource audioSource;
+    public AudioClip footsteps;
+
     protected override void Custom_Start()
     {
         //Rigidbody start
@@ -33,6 +36,11 @@ public class PlayerMovement : Parent_PlayerScript
 
         // Mouse Movement start
         NavigationAgent = GetComponent<NavMeshAgent>();
+
+        // Sound
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = footsteps;
+        audioSource.loop = true;
     }
 
     public void Move()
@@ -54,6 +62,7 @@ public class PlayerMovement : Parent_PlayerScript
 
             rb.velocity = heading * movementSpeed;
 
+            FootstepsSound(true);
             MainScript.AnimationScript.ToggleAnimation("isWalkingFWD", true);
         }
         // Mouse Click Detection (Only happens if WASD is not being pressed)
@@ -70,6 +79,7 @@ public class PlayerMovement : Parent_PlayerScript
                     isMovingToClickedLocation = true;
 
                     Instantiate(GO_DisplayClickedLocation, ClickedLocation.point, Quaternion.identity);
+                    FootstepsSound(true);
                     MainScript.AnimationScript.ToggleAnimation("isWalkingFWD", true);
                 }
                 // Clicked on [SOMETHING ELSE] (Call MainScript??) TO BE DEFINED
@@ -84,6 +94,7 @@ public class PlayerMovement : Parent_PlayerScript
         else if (!isMovingToClickedLocation)
         {
             rb.velocity = transform.forward * 0;
+            FootstepsSound(false);
             MainScript.AnimationScript.ToggleAnimation("isWalkingFWD", false);
         }
     }
@@ -105,6 +116,7 @@ public class PlayerMovement : Parent_PlayerScript
         else if (!isMovingToClickedLocation && !MainScript.CombatScript.Bool_BattleIsHappening)
         {
             MainScript.CombatScript.BeginFight();
+            FootstepsSound(false);
             MainScript.AnimationScript.ToggleAnimation("isWalkingFWD", false);
         }
     }
@@ -115,8 +127,19 @@ public class PlayerMovement : Parent_PlayerScript
         NavigationAgent.ResetPath();
         NavigationAgent.SetDestination(WhereToGo);
         isMovingToClickedLocation = true;
-
+        
+        FootstepsSound(true);
         MainScript.AnimationScript.ToggleAnimation("isWalkingFWD", true);
+    }
+
+    private void FootstepsSound(bool toggle){
+        if(toggle)
+        {
+            audioSource.Play();
+            return;
+        }
+
+        audioSource.Stop();
     }
 }
 

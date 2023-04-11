@@ -8,4 +8,5 @@ public static class StaticPlayerProfile
 
     public static string PlayerName { get; set; } = "No player name";
 
+    public static int UnlockedLevel { get; set; } = 0;
 }
