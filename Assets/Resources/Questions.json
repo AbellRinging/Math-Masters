@@ -7,189 +7,189 @@
     },
     {
         "Tier": 2,
-        "FirstNumber": 2,
+        "FirstNumber": 3,
         "Operation": "x",
-        "SecondNumber": 8
+        "SecondNumber": 10
     },
     {
         "Tier": 3,
-        "FirstNumber": 7,
-        "Operation": "x",
-        "SecondNumber": 5
-    },
-    {
-        "Tier": 4,
-        "FirstNumber": 7,
+        "FirstNumber": 10,
         "Operation": "x",
         "SecondNumber": 2
     },
     {
+        "Tier": 4,
+        "FirstNumber": 5,
+        "Operation": "x",
+        "SecondNumber": 10
+    },
+    {
         "Tier": 5,
-        "FirstNumber": 3,
+        "FirstNumber": 4,
         "Operation": "x",
         "SecondNumber": 10
     },
     {
         "Tier": 6,
-        "FirstNumber": 9,
+        "FirstNumber": 8,
         "Operation": "x",
         "SecondNumber": 2
     },
     {
         "Tier": 7,
-        "FirstNumber": 10,
+        "FirstNumber": 5,
         "Operation": "x",
-        "SecondNumber": 5
+        "SecondNumber": 2
     },
     {
         "Tier": 8,
         "FirstNumber": 2,
         "Operation": "x",
-        "SecondNumber": 2
+        "SecondNumber": 10
     },
     {
         "Tier": 9,
-        "FirstNumber": 4,
-        "Operation": "x",
-        "SecondNumber": 10
-    },
-    {
-        "Tier": 10,
-        "FirstNumber": 5,
-        "Operation": "x",
-        "SecondNumber": 2
-    },
-    {
-        "Tier": 11,
-        "FirstNumber": 2,
-        "Operation": "x",
-        "SecondNumber": 10
-    },
-    {
-        "Tier": 12,
-        "FirstNumber": 1,
-        "Operation": "x",
-        "SecondNumber": 10
-    },
-    {
-        "Tier": 13,
-        "FirstNumber": 1,
-        "Operation": "x",
-        "SecondNumber": 2
-    },
-    {
-        "Tier": 14,
-        "FirstNumber": 10,
-        "Operation": "x",
-        "SecondNumber": 2
-    },
-    {
-        "Tier": 15,
-        "FirstNumber": 5,
-        "Operation": "x",
-        "SecondNumber": 10
-    },
-    {
-        "Tier": 16,
-        "FirstNumber": 7,
-        "Operation": "x",
-        "SecondNumber": 3
-    },
-    {
-        "Tier": 17,
-        "FirstNumber": 4,
-        "Operation": "x",
-        "SecondNumber": 4
-    },
-    {
-        "Tier": 18,
-        "FirstNumber": 7,
-        "Operation": "x",
-        "SecondNumber": 6
-    },
-    {
-        "Tier": 19,
-        "FirstNumber": 2,
-        "Operation": "x",
-        "SecondNumber": 5
-    },
-    {
-        "Tier": 20,
-        "FirstNumber": 3,
-        "Operation": "x",
-        "SecondNumber": 5
-    },
-    {
-        "Tier": 21,
-        "FirstNumber": 10,
-        "Operation": "x",
-        "SecondNumber": 1
-    },
-    {
-        "Tier": 22,
         "FirstNumber": 6,
         "Operation": "x",
         "SecondNumber": 2
     },
     {
-        "Tier": 23,
+        "Tier": 10,
         "FirstNumber": 8,
         "Operation": "x",
         "SecondNumber": 3
     },
     {
-        "Tier": 24,
+        "Tier": 11,
         "FirstNumber": 9,
         "Operation": "x",
         "SecondNumber": 4
     },
     {
-        "Tier": 25,
-        "FirstNumber": 3,
+        "Tier": 12,
+        "FirstNumber": 7,
+        "Operation": "x",
+        "SecondNumber": 5
+    },
+    {
+        "Tier": 13,
+        "FirstNumber": 7,
+        "Operation": "x",
+        "SecondNumber": 3
+    },
+    {
+        "Tier": 14,
+        "FirstNumber": 4,
+        "Operation": "x",
+        "SecondNumber": 4
+    },
+    {
+        "Tier": 15,
+        "FirstNumber": 7,
         "Operation": "x",
         "SecondNumber": 6
     },
     {
-        "Tier": 26,
+        "Tier": 16,
         "FirstNumber": 2,
         "Operation": "x",
-        "SecondNumber": 30
+        "SecondNumber": 2
     },
     {
-        "Tier": 27,
+        "Tier": 17,
         "FirstNumber": 3,
         "Operation": "x",
         "SecondNumber": 100
     },
     {
-        "Tier": 28,
+        "Tier": 18,
         "FirstNumber": 9,
         "Operation": "x",
         "SecondNumber": 20
     },
     {
-        "Tier": 29,
+        "Tier": 19,
+        "FirstNumber": 7,
+        "Operation": "x",
+        "SecondNumber": 2
+    },
+    {
+        "Tier": 20,
+        "FirstNumber": 10,
+        "Operation": "x",
+        "SecondNumber": 5
+    },
+    {
+        "Tier": 21,
+        "FirstNumber": 2,
+        "Operation": "x",
+        "SecondNumber": 5
+    },
+    {
+        "Tier": 22,
+        "FirstNumber": 3,
+        "Operation": "x",
+        "SecondNumber": 5
+    },
+    {
+        "Tier": 23,
+        "FirstNumber": 10,
+        "Operation": "x",
+        "SecondNumber": 1
+    },
+    {
+        "Tier": 24,
         "FirstNumber": 9,
         "Operation": "x",
         "SecondNumber": 0
     },
     {
-        "Tier": 30,
-        "FirstNumber": 1,
+        "Tier": 25,
+        "FirstNumber": 2,
         "Operation": "x",
         "SecondNumber": 80
     },
     {
-        "Tier": 31,
+        "Tier": 26,
         "FirstNumber": 5,
         "Operation": "x",
         "SecondNumber": 6
     },
     {
-        "Tier": 32,
+        "Tier": 27,
         "FirstNumber": 8,
         "Operation": "x",
         "SecondNumber": 6
+    },
+    {
+        "Tier": 28,
+        "FirstNumber": 9,
+        "Operation": "x",
+        "SecondNumber": 2
+    },
+    {
+        "Tier": 29,
+        "FirstNumber": 1,
+        "Operation": "x",
+        "SecondNumber": 10
+    },
+    {
+        "Tier": 30,
+        "FirstNumber": 1,
+        "Operation": "x",
+        "SecondNumber": 2
+    },
+    {
+        "Tier": 31,
+        "FirstNumber": 3,
+        "Operation": "x",
+        "SecondNumber": 6
+    },
+    {
+        "Tier": 32,
+        "FirstNumber": 2,
+        "Operation": "x",
+        "SecondNumber": 30
     },
     {
         "Tier": 33,
