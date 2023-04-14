@@ -152,16 +152,13 @@ public class PlayerCombat : Parent_PlayerScript
     {
         MainScript.PauseMenuScript.EndOfLevelMenu();
 
-        /*
-            SAVE PROGRESS IN DATABASE
-        */
-
-        StartCoroutine(ManuallyInsertedDelay());
-    }
-    private IEnumerator ManuallyInsertedDelay() //  Put the content in the method above?
-    {
-        yield return new WaitForSeconds(1);
-        MainScript.PauseMenuScript.AllowPlayerToContinueInEndOfLevelMenu();
+        if(StaticPlayerProfile.MaxLevelComplete < MainScript.int_CurrentScene - 2)
+        {
+            StaticPlayerProfile.MaxLevelComplete = MainScript.int_CurrentScene - 2;
+            MainScript.SetPrimaryTitleData();
+            return;
+        }
+        MainScript.SetPrimaryTitleData("Money", "" + StaticPlayerProfile.Money);
     }
 
     private void SetUpEnemyProfile()

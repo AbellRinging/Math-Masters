@@ -19,7 +19,6 @@ public class PlayFabManager : MonoBehaviour
     /*
         That Login() method in Start() was to login with computer ID and not with email + password;
     */
-
     // private void Start()
     // {
     //     Login();
@@ -46,7 +45,6 @@ public class PlayFabManager : MonoBehaviour
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
         messageText.text = "Registered and logged in!";
-        StaticPlayerProfile.PlayerFabId = result.PlayFabId;
         StaticPlayerProfile.PlayerName = usernameInput.text;
 
         UpdateDisplayName(StaticPlayerProfile.PlayerName);
@@ -67,14 +65,13 @@ public class PlayFabManager : MonoBehaviour
     void OnLoginSuccess(LoginResult result)
     {
         messageText.text = "Logged in!";
-        StaticPlayerProfile.PlayerFabId = result.PlayFabId;
 
         /*
             THIS NEXT BIT HERE IS HOW TO CALL FOR PROFILE, DON'T FORGET HOW IT WORKS
         */
 
-        PlayFabClientAPI.GetPlayerProfile( new GetPlayerProfileRequest(){
-            PlayFabId = StaticPlayerProfile.PlayerFabId,
+        PlayFabClientAPI.GetPlayerProfile( new GetPlayerProfileRequest()
+        {
             ProfileConstraints = new PlayerProfileViewConstraints(){
                 ShowDisplayName = true
             }
@@ -83,6 +80,49 @@ public class PlayFabManager : MonoBehaviour
         /*
             ###### 
         */
+
+        GetPrimaryTitleData();
+    }
+
+    // Get the values of two primary title data key value pairs
+    public void GetPrimaryTitleData()
+    {
+        var request = new GetUserDataRequest();
+        PlayFabClientAPI.GetUserData(request, OnGetPrimaryTitleDataSuccess, OnError);
+    }
+
+    private void OnGetPrimaryTitleDataSuccess(GetUserDataResult result)
+    {
+        int value1, value2;
+        UserDataRecord userDataRecord1, userDataRecord2;
+
+        if (result.Data.TryGetValue("MaxLevelComplete", out userDataRecord1))
+        {
+            if (int.TryParse(userDataRecord1.Value, out value1))
+            {
+                StaticPlayerProfile.MaxLevelComplete = value1;
+                Debug.Log("MaxLevelComplete value: " + value1);
+            }
+            else
+            {
+                Debug.LogError("Error parsing MaxLevelComplete value: " + userDataRecord1.Value);
+                return;
+            }
+        }
+
+        if (result.Data.TryGetValue("Money", out userDataRecord2))
+        {
+            if (int.TryParse(userDataRecord2.Value, out value2))
+            {
+                StaticPlayerProfile.Money = value2;
+                Debug.Log("Money value: " + value2);
+            }
+            else
+            {
+                Debug.LogError("Error parsing Money value: " + userDataRecord2.Value);
+                return;
+            }
+        }
 
         StartCoroutine(OnLoginSuccessSleep());
     }
@@ -96,7 +136,6 @@ public class PlayFabManager : MonoBehaviour
         StaticPlayerProfile.PlayerName = result.PlayerProfile.DisplayName;
         Debug.Log("User that logged in: " + StaticPlayerProfile.PlayerName);
     }
-
 
     void UpdateDisplayName(string Name) {
         PlayFabClientAPI.UpdateUserTitleDisplayName( new UpdateUserTitleDisplayNameRequest {

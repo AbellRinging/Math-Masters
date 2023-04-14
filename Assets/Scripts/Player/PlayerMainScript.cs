@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using PlayFab;
+using PlayFab.ClientModels;
 
 public class PlayerMainScript : MonoBehaviour
 {
@@ -21,7 +23,7 @@ public class PlayerMainScript : MonoBehaviour
     [HideInInspector] public PauseMenu PauseMenuScript;
     [HideInInspector] public GameObject CombatCanvas;
 
-    private int int_CurrentScene;
+    public int int_CurrentScene;
 
     #region Coroutine Storage
         /// <summary>
@@ -61,7 +63,7 @@ public class PlayerMainScript : MonoBehaviour
             if(int_CurrentScene != 1) QuestionScript.Run_At_Start();
         #endregion
 
-        UpdateNameInHUD();
+        UpdateNameAndXPInHUD();
     }
 
     private void Update()
@@ -83,24 +85,53 @@ public class PlayerMainScript : MonoBehaviour
         }
     }
 
-    #region Money (Incomplete)
-        public int DB_GetMoney()
+    #region Database
+        // Set the values of two primary title data key value pairs
+        public void SetPrimaryTitleData()
         {
-            return 1;
+            var request = new UpdateUserDataRequest
+            {
+                Data = new Dictionary<string, string>
+                {
+                    {"MaxLevelComplete", "" + StaticPlayerProfile.MaxLevelComplete},
+                    {"Money", "" + StaticPlayerProfile.Money}
+                }
+            };
+            PlayFabClientAPI.UpdateUserData(request, OnSetPrimaryTitleDataSuccess, OnError);
+        }
+        public void SetPrimaryTitleData(string key, string value)
+        {
+            var request = new UpdateUserDataRequest
+            {
+                Data = new Dictionary<string, string>
+                {
+                    { key, value }
+                }
+            };
+
+            PlayFabClientAPI.UpdateUserData(request, OnSetPrimaryTitleDataSuccess, OnError);
         }
 
-        public void DB_SetMoney()
+        private void OnSetPrimaryTitleDataSuccess(UpdateUserDataResult result)
         {
+            PauseMenuScript.AllowPlayerToContinueInEndOfLevelMenu();
+            Debug.Log("Primary title data updated successfully.");
+        }
 
+        private void OnError(PlayFabError error)
+        {
+            PauseMenuScript.AllowPlayerToRetry();
+            Debug.LogError("PlayFab error: " + error.ErrorMessage);
         }
     #endregion
 
     #region UI related
-        private TextMeshProUGUI DisplayPlayerName;
-        private void UpdateNameInHUD()
+        private Transform NameAndXP;
+        private void UpdateNameAndXPInHUD()
         {
-            DisplayPlayerName = EssentialCanvas.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-            DisplayPlayerName.text = StaticPlayerProfile.PlayerName;
+            NameAndXP = EssentialCanvas.transform.GetChild(1).transform.GetChild(0);
+            NameAndXP.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = StaticPlayerProfile.PlayerName;
+            NameAndXP.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "" + StaticPlayerProfile.MaxLevelComplete;
         }
     #endregion
 }

@@ -4,9 +4,7 @@ using UnityEngine;
 
 public static class StaticPlayerProfile
 {
-    public static string PlayerFabId { get; set; } = "N/A";
-
     public static string PlayerName { get; set; } = "No player name";
-
-    public static int UnlockedLevel { get; set; } = 0;
+    public static int MaxLevelComplete { get; set; } = 0;
+    public static int Money { get; set; } = 0;
 }

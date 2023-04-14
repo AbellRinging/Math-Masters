@@ -141,13 +141,12 @@ public class PlayerDeck : Parent_PlayerScript
         private Vector3[] Generate_CardCoordinates()
         {
             Vector3[] cardCoordinates = new Vector3[Int_HandSize];
-            
-            Vector2 canvasSize = MainScript.CombatCanvas.GetComponent<CanvasScaler>().referenceResolution;
-            float distanceBetweenCards = canvasSize.x / (Int_HandSize + 1);
-            
+                    
+            float distanceBetweenCards = Screen.width / (Int_HandSize + 1);
+                    
             for(int i = 0; i < Int_HandSize; ++i)
             {
-                cardCoordinates[i] = RT_DeckMat.position + new Vector3(distanceBetweenCards * (i + 1) - canvasSize.x/2, 0, 0);
+                cardCoordinates[i] = RT_DeckMat.position + new Vector3(distanceBetweenCards * (i + 1) - Screen.width/2, 0, 0);
             }
 
             return cardCoordinates;
