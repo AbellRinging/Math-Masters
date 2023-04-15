@@ -46,7 +46,7 @@ public class PlayerMovement : Parent_PlayerScript
     public void Move()
     {
         // WASD Movement
-        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))) // && !isDashing && !isAttacking)
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
             // Stop any mouse movement
             isMovingToClickedLocation = false;
@@ -61,8 +61,10 @@ public class PlayerMovement : Parent_PlayerScript
             if (heading != Vector3.zero) transform.forward = heading;
 
             rb.velocity = heading * movementSpeed;
-
-            FootstepsSound(true);
+            if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+            {
+                FootstepsSound(true);
+            }
             MainScript.AnimationScript.ToggleAnimation("isWalkingFWD", true);
         }
         // Mouse Click Detection (Only happens if WASD is not being pressed)
