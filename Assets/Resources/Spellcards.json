@@ -2,21 +2,21 @@
 	{
         "Type": "SpellCard",
         "Name": "Bloquear Ataque",
-        "ImageName": "1",
+        "ImageName": "b",
         "SpellType": "Block"
     },
 
     {
         "Type": "SpellCard",
         "Name": "Curar",
-        "ImageName": "2",
+        "ImageName": "a",
         "SpellType": "Heal"
     },
 
     {
         "Type": "SpellCard",
         "Name": "Ataque duplo",
-        "ImageName": "3",
+        "ImageName": "c",
         "SpellType": "DoubleAttack"
     }
 ]
