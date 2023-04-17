@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -111,17 +112,28 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         
         EndOfLevel = true;
-        FinishedLevelText.SetActive(true);
         ResumeButton.SetActive(false);
         QuitButton.SetActive(false);
+        RestartButton.SetActive(false);
+        ReturnButton.SetActive(false);
 
-        Time.timeScale = 0f;
+        FinishedLevelText.SetActive(true);
+
         GameIsPaused = true;
-
     }
         public void AllowPlayerToContinueInEndOfLevelMenu()
         {
+            FinishedLevelText.GetComponent<TextMeshProUGUI>().text = "Terminaste o nivel!";
+
             NextLevelButton.SetActive(true);
+            ReturnButton.SetActive(true);
+        }
+
+        public void AllowPlayerToRetry()
+        {
+            FinishedLevelText.GetComponent<TextMeshProUGUI>().text = "Ocorreu um problema";
+
+            RestartButton.SetActive(true);
             ReturnButton.SetActive(true);
         }
 }
