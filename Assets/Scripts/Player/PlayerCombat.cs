@@ -158,6 +158,7 @@ public class PlayerCombat : Parent_PlayerScript
             MainScript.SetPrimaryTitleData();
             return;
         }
+        StaticPlayerProfile.Money = StaticPlayerProfile.Money + StaticPlayerProfile.MoneyToAdd;
         MainScript.SetPrimaryTitleData("Money", "" + StaticPlayerProfile.Money);
     }
 

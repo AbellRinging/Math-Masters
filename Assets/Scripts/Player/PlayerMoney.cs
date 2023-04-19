@@ -14,7 +14,7 @@ public class PlayerMoney : Parent_PlayerScript
 
     public void Set_Money (int amount)
     {
-        StaticPlayerProfile.Money += amount;
-        Text_MoneyHUD.text = "" + StaticPlayerProfile.Money;
+        StaticPlayerProfile.MoneyToAdd += amount;
+        Text_MoneyHUD.text = "" + StaticPlayerProfile.Money + StaticPlayerProfile.MoneyToAdd;
     }
 }

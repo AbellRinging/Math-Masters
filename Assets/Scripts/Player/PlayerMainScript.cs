@@ -64,6 +64,7 @@ public class PlayerMainScript : MonoBehaviour
         #endregion
 
         UpdateNameAndXPInHUD();
+        StaticPlayerProfile.MoneyToAdd = 0;
     }
 
     private void Update()

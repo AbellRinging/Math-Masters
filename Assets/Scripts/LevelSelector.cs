@@ -8,10 +8,12 @@ public class LevelSelector : MonoBehaviour
 {
    public int level;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake() 
     {
-
+        if (level > StaticPlayerProfile.MaxLevelComplete + 1)
+        {
+            transform.GetComponent<Button>().interactable = false;
+        }
     }
 
    public void OpenScene()
