@@ -54,8 +54,6 @@ public class Enemy : MonoBehaviour
 
     public void OnDeath()
     {
-        // SOME STUFF IS NEEDED FIRST (EXP)
-
         MainScript.MoneyScript.Set_Money(OnDeath_Money);        
     }
 
