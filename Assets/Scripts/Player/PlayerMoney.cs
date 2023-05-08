@@ -9,7 +9,7 @@ public class PlayerMoney : Parent_PlayerScript
     protected override void Custom_Start()
     {
         Text_MoneyHUD = MainScript.EssentialCanvas.transform.Find("Money").GetComponentInChildren<TextMeshProUGUI>();
-        Set_Money(StaticPlayerProfile.Money);
+        Set_Money(0);
     }
 
     public void Set_Money (int amount)

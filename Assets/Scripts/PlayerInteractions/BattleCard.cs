@@ -113,7 +113,7 @@ public class BattleCard : MonoBehaviour
             
             Text_Type.text = "Ataque";
 
-            Text_Description.text = "Dá " + card.ImageName + " de dano ao inimigo";
+            Text_Description.text = "Tentar responder à questão com " + card.ImageName;
         }
 
         private void CreateSpellCard(SpellCard card, Sprite image)
